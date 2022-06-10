@@ -1,14 +1,17 @@
 const webpack = require("webpack");
 const path = require("path");
+const ImageminWebpWebpackPlugin = require("imagemin-webp-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // чистит папку dist
+
 
 module.exports = {
   context: path.resolve(__dirname, "../src"),
   mode: "development",
   devtool: "eval-source-map", // сборка : самая медленная, пересборка : хорошо
   entry: {
-    entry: ["babel-polyfill", "../prod/index.js"],
+    entry: ["babel-polyfill", "../index.js"],
   },
   devServer: {
     port: 8080,
@@ -18,23 +21,38 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "../prod/index.html",
+      template: "../index.html",
     }),
     new CleanWebpackPlugin(),
     new webpack.DefinePlugin({
       CANVAS_RENDERER: JSON.stringify(true),
       WEBGL_RENDERER: JSON.stringify(true),
     }),
+    new webpack.HotModuleReplacementPlugin(),
+    new ImageminWebpWebpackPlugin(),
   ],
+  
   module: {
     rules: [
       {
-        test: /\.css$/, //если встречает css в import - использовать этот loader
-        use: ["style-loader", "css-loader"], // работает справа-налево
+        test: /\.(scss|css)$/,
+        use: [
+          "style-loader",
+          {
+            loader: "css-loader",
+            options: { sourceMap: true, importLoaders: 1, modules: false },
+          },
+          { loader: "sass-loader", options: { sourceMap: true } },
+        ],
       },
       {
-        test: /\.(png|jpeg|svg|gif)$/,
-        use: ["file-loader"],
+        test: /\.(png|jpeg|svg|gif|webp)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: { sourceMap: true },
+          },
+        ],
       },
       {
         test: [/\.vert$/, /\.frag$/],

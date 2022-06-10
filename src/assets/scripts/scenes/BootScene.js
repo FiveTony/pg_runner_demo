@@ -1,11 +1,10 @@
 export default class BootScene extends Phaser.Scene {
   constructor() {
     super("Boot", {});
+    console.log("BootScene")
   }
   preload() {
     this.load.setBaseURL(document.location.href);
-    console.log(document.location.href, document.location);
-    this.load.svg("stars", "src/assets/sprites/stars.svg");
   }
   create() {
     this.createBackground();
