@@ -6,32 +6,32 @@ export default class Borders extends Phaser.Physics.Arcade.Group {
         super(scene.physics.world, scene)
         this.scene = scene
 
-        this.left_x = this.scene.game.config.width / 2 - 250
-        this.right_x = this.scene.game.config.width / 2 + 250
-
-
-        // this.countCreated = 0
+        this.left_x = this.scene.game.config.width / 2 - 246
+        this.right_x = this.scene.game.config.width / 2 + 246
 
         this.scene.events.on("leave", ()=>{
-            // console.log("BORDER leave", this.scene.events.listenerCount("leave"));
+            // console.log("BORDER leave", this.scene.events.listenerCount("update"));
             this.createBorder();
         }, this)
     }
     createBorder() {
+        if (this.scene.room_num !== 1) {
+            let y = -26
         // let left_border = this.getFirstDead()
         // let right_border = this.getFirstDead()
         // if (!left_border) {
-            let left_border = new Border(this.scene, this.left_x, 0, `border`)
+            let left_border = new Border(this.scene, this.left_x, y, `border`)
             this.add(left_border)
         // } 
         // else left_border.reset(this.scene.game.config.width / 2 - 700 / 2)
         // if (!right_border) {
-            let right_border = new Border(this.scene, this.right_x, 0, `border`)
+            let right_border = new Border(this.scene, this.right_x, y, `border`)
             this.add(right_border)
         // } 
         // else right_border.reset(this.scene.game.config.width / 2 + 900 / 2)
         left_border.move()
         right_border.move()
+        }
         //  console.log("createBorder()",this.scene.events.listenerCount("update"), this.scene.events.listeners("update"))
     }
 }
@@ -44,12 +44,13 @@ class Border extends Phaser.GameObjects.Sprite {
         this.body.enable = true
         // this.setScale(2)
         this.init()
+        // this.scene.children.moveDown(this)
     }
     init() {
         this.scene.events.on('update', this.update, this)
     }
     update(timestep, dt) {
-        if (this.y > 1080){
+        if (this.y > 1098){
             // this.setAlive(false)
             this.destroy()
         } 

@@ -9,41 +9,44 @@ export default class Rooms extends Phaser.Physics.Arcade.Group {
         this.scene = scene
 
         this.countCreated = 0
-        this.room_num = 1
 
-        this.createRoom()
+        this.createFirstRoom()
         this.scene.events.on("leave", ()=>{
-            console.log("leave");
+            // console.log("leave",this.scene.room_num);
             this.createSecondRoom();
             this.scene.children.bringToTop(this.scene.player)
-
         }, this)
     }
-    createRoom() {       
-        let first_room = new Room(this.scene, this.scene.game.config.width / 2 + BG_WIDTH / 2,this.scene.game.config.height, `room1`)
+    createFirstRoom() {     
+        let first_room = new Room(this.scene, this.scene.game.config.width / 2 + BG_WIDTH / 2,this.scene.game.config.height, "room1")
         this.add(first_room)
         first_room.move()
         this.countCreated++
-        this.room_num++
+        this.scene.room_num++
+        this.scene.count_created_scenes++
+        // console.log(this.scene.room_num)
     }
     createSecondRoom() {
+        // console.log(this.countCreated, this.scene.room_num)
+
         let second_room = this.getFirstDead()
         if (!second_room) {
             second_room = new Room(this.scene, this.scene.game.config.width / 2 + BG_WIDTH / 2, 0, "room2")
             this.add(second_room)
         } else {
             let room_sprite
-            if ((this.room_num) % 5 === 0) {
+            if (this.scene.room_num === 5) {
                 room_sprite = "room5"
-                this.room_num = 0
+                this.scene.room_num = 0
             }
-            else if ((this.room_num) % 2 === 0) room_sprite = "room2"
+            else if (this.scene.room_num === 2 || this.scene.room_num === 4 ) room_sprite = "room2"
+            else if (this.scene.room_num === 3) room_sprite = "room3"
             else room_sprite = "room1"
-            console.log(this.countCreated, this.room_num , room_sprite)
             second_room.reset(room_sprite)
         }
         this.countCreated++
-        this.room_num++
+        this.scene.room_num++
+        this.scene.count_created_scenes++
         second_room.move()
     }
 }
