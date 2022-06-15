@@ -1,23 +1,36 @@
 const BG_WIDTH = 900
 const BG_HEIGHT = 2880
 
+const X_1 = 700
+const X_2 = 975
+const X_3 = 1250
+
 const DATA = [
-    [365, -600, 'spot_1'],
-    [1320, -8000, 'spot_2'],
-    [1350, -1600, 'spot_1'],
-    [400, -920, 'spot_2'],
-    [1120, -900, 'spot_1'],
-    [800, -1200, 'spot_2'],
-    [865, -600, 'spot_2'],
-    [1120, -1400, 'spot_1'],
-    [1050, -1100, 'spot_2'],
-    [865, -800, 'spot_2'],
-    [1020, -700, 'spot_1'],
-    [950, -1100, 'spot_2'],
-    [865, -1200, 'spot_1'],
-    [720, -800, 'spot_2'],
-    [950, -1100, 'spot_2'],
+    [X_2, -600],
+    [X_3, -8000],
+    [X_1, -1600],
+    [X_2, -920],
+    [X_2, -900],
+    [X_2, -1200],
+    [X_1, -600],
+    [X_2, -1400],
+
+    [X_2, -1100],
+    [X_3, -800],
+    [X_3, -700],
+    [X_2, -1100],
+    [X_2, -1200],
+    [X_3, -800],
+    [X_3, -1100],
+    [X_2, -1100],
+    [X_2, -1200],
+    [X_3, -800],
+    [X_2, -1100],
+    [X_3, -1100],
+    [X_2, -1200],
+    [X_3, -800],
 ]
+
 
 export default class Coins extends Phaser.Physics.Arcade.Group {
     constructor(scene) {
@@ -29,7 +42,9 @@ export default class Coins extends Phaser.Physics.Arcade.Group {
 
         this.scene.events.on("leave", ()=>{
             if (this.scene.count_created_scenes > 2 ) {
-                if (this.count_created === 15) this.count_created = 0
+                if (this.count_created === 22) this.count_created = 0
+                console.log("createCoin", this.count_created)
+                this.createCoin()
                 this.createCoin()
                 this.createCoin()
                 this.createCoin()
@@ -38,36 +53,46 @@ export default class Coins extends Phaser.Physics.Arcade.Group {
     }
     createFirstElements() {
         let data_1 = DATA[0]
-        let elem_1 = new Coin(this.scene, 465, 300, 'coin')
+        let elem_1 = new Coin(this.scene, X_2, 500, 'coin')
         elem_1.move()
         this.add(elem_1)
 
         let data_2 = DATA[1]
-        let elem_2 = new Coin(this.scene, 1420, -600, 'coin')
+        let elem_2 = new Coin(this.scene, X_3, -200, 'coin')
         elem_2.move()
         this.add(elem_2)
 
         let data_3 = DATA[2]
-        let elem_3 = new Coin(this.scene, 1050, -400, 'coin')
+        let elem_3 = new Coin(this.scene, X_1, -600, 'coin')
         elem_3.move()
         this.add(elem_3)
 
         let data_4 = DATA[3]
-        let elem_4 = new Coin(this.scene, 900, -2420, 'coin')
+        let elem_4 = new Coin(this.scene, X_2, -1100, 'coin')
         elem_4.move()
         this.add(elem_4)
 
         let data_5 = DATA[4]
-        let elem_5 = new Coin(this.scene, 920, -3500, 'coin')
+        let elem_5 = new Coin(this.scene, X_2, -2000, 'coin')
         elem_5.move()
         this.add(elem_5)
 
         let data_6 = DATA[5]
-        let elem_6 = new Coin(this.scene, 1000, -3400, 'coin')
+        let elem_6 = new Coin(this.scene, X_2, -2650, 'coin')
         elem_6.move()
         this.add(elem_6)
 
-        this.count_created = 6
+        let data_7 = DATA[5]
+        let elem_7 = new Coin(this.scene, X_1, -3220, 'coin')
+        elem_7.move()
+        this.add(elem_7)
+
+        let data_8 = DATA[5]
+        let elem_8 = new Coin(this.scene, X_2, -4200, 'coin')
+        elem_8.move()
+        this.add(elem_8)
+
+        this.count_created = 8
     }
     createCoin() {
         let data = DATA[this.count_created]

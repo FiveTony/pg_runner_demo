@@ -1,23 +1,26 @@
 const BG_WIDTH = 900
 const BG_HEIGHT = 2880
 
+const X_1 = 700
+const X_2 = 975
+const X_3 = 1250
+
 const DATA = [
-    [365, -600, 'spot_1'],
-    [1320, -8000, 'spot_2'],
-    [1350, -1600, 'spot_1'],
-    [400, -920, 'spot_2'],
-    [1120, -900, 'spot_1'],
-    [800, -1200, 'spot_2'],
-    [865, -600, 'spot_2'],
-    [1120, -1400, 'spot_1'],
-    [1050, -1100, 'spot_2'],
-    [865, -800, 'spot_2'],
-    [1020, -700, 'spot_1'],
-    [950, -1100, 'spot_2'],
-    [865, -1200, 'spot_1'],
-    [720, -800, 'spot_2'],
-    [950, -1100, 'spot_2'],
+    [X_3, -600],
+    [X_1, -8000],
+    [X_1, -1600],
+    [X_2, -920],
+    [X_2, -900],
+    [X_2, -1200],
+
+    [X_2, -850],
+    [X_2, -1050],
+    [X_3, -2300],
+    [X_2, -800],
+    [X_3, -700],
+    [X_3, -1100]
 ]
+
 
 export default class Positive extends Phaser.Physics.Arcade.Group {
     constructor(scene) {
@@ -38,32 +41,32 @@ export default class Positive extends Phaser.Physics.Arcade.Group {
     }
     createFirstElements() {
         let data_1 = DATA[0]
-        let elem_1 = new PositiveObject(this.scene, 565, 1300, 'positive1')
+        let elem_1 = new PositiveObject(this.scene, X_3, 100, 'positive1')
         elem_1.move()
         this.add(elem_1)
 
         let data_2 = DATA[1]
-        let elem_2 = new PositiveObject(this.scene, 1520, -1200, 'positive2')
+        let elem_2 = new PositiveObject(this.scene, X_1, -1500, 'positive2')
         elem_2.move()
         this.add(elem_2)
 
         let data_3 = DATA[2]
-        let elem_3 = new PositiveObject(this.scene, 1150, -900, 'positive3')
+        let elem_3 = new PositiveObject(this.scene, X_1, -3020, 'positive3')
         elem_3.move()
         this.add(elem_3)
 
         let data_4 = DATA[3]
-        let elem_4 = new PositiveObject(this.scene, 800, -2220, 'positive4')
+        let elem_4 = new PositiveObject(this.scene, X_2, -4400, 'positive4')
         elem_4.move()
         this.add(elem_4)
 
         let data_5 = DATA[4]
-        let elem_5 = new PositiveObject(this.scene, 820, -3800, 'positive5')
+        let elem_5 = new PositiveObject(this.scene, X_2, -5800, 'positive5')
         elem_5.move()
         this.add(elem_5)
 
         let data_6 = DATA[5]
-        let elem_6 = new PositiveObject(this.scene, 900, -3600, 'positive6')
+        let elem_6 = new PositiveObject(this.scene, X_2, -6300, 'positive6')
         elem_6.move()
         this.add(elem_6)
 

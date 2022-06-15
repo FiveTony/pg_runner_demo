@@ -11,7 +11,7 @@ const BG_HEIGHT = 2880
 const LEFT_LIMIT = 400;
 const RIGHT_LIMIT = 1320;
 
-const GAME_VELOCITY = 4
+const GAME_VELOCITY = 5
 
 
 
@@ -27,11 +27,13 @@ export default class GameScene extends Phaser.Scene {
   }
   preload() {
     this.load.setBaseURL(document.location.href);
-    this.load.image("bg", "src/assets/sprites/3.png");
-    this.load.image("player", "src/assets/sprites/player2.png");
-    this.load.image("bg_1", "src/assets/sprites/1_1.png");
-    this.load.image("bg_2", "src/assets/sprites/1_2.png");
-    this.load.image("player1_1", "src/assets/sprites/player1_1.png");
+    // this.load.image("bg", "src/assets/sprites/3.png");
+
+    // this.load.image("player", "src/assets/sprites/player2_2.png");
+
+    // this.load.image("bg_1", "src/assets/sprites/1_1.png");
+    // this.load.image("bg_2", "src/assets/sprites/1_2.png");
+    this.load.image("player1_1", "src/assets/sprites/player1_2.png");
     this.load.image("border", "src/assets/sprites/2version/border.png");
     this.load.image("room1", "src/assets/sprites/2version/room1.jpg");
     this.load.image("room2", "src/assets/sprites/2version/room2.jpg");
@@ -40,30 +42,30 @@ export default class GameScene extends Phaser.Scene {
     this.load.image("left_element", "src/assets/sprites/2version/left_element1.jpg");
     this.load.image("right_element", "src/assets/sprites/2version/right_element1.jpg");
 
-    this.load.image("room1_1", "src/assets/sprites/2version/negative/1_1.png");
-    this.load.image("room1_2", "src/assets/sprites/2version/negative/1_2.png");
-    this.load.image("room1_3", "src/assets/sprites/2version/negative/1_3.png");
+    this.load.image("room1_1", "src/assets/sprites/2version/negative/1_1_2.png");
+    this.load.image("room1_2", "src/assets/sprites/2version/negative/1_2_2.png");
+    this.load.image("room1_3", "src/assets/sprites/2version/negative/1_3_2.png");
 
-    this.load.image("room2_1", "src/assets/sprites/2version/negative/2_1.png");
-    this.load.image("room2_2", "src/assets/sprites/2version/negative/2_2.png");
-    this.load.image("room2_3", "src/assets/sprites/2version/negative/2_3.png");
+    this.load.image("room2_1", "src/assets/sprites/2version/negative/2_1_2.png");
+    this.load.image("room2_2", "src/assets/sprites/2version/negative/2_2_2.png");
+    this.load.image("room2_3", "src/assets/sprites/2version/negative/2_3_2.png");
 
-    this.load.image("room3_1", "src/assets/sprites/2version/negative/3_1.png");
-    this.load.image("room3_2", "src/assets/sprites/2version/negative/3_2.png");
-    this.load.image("room3_3", "src/assets/sprites/2version/negative/3_3.png");
+    this.load.image("room3_1", "src/assets/sprites/2version/negative/3_1_2.png");
+    this.load.image("room3_2", "src/assets/sprites/2version/negative/3_2_2.png");
+    this.load.image("room3_3", "src/assets/sprites/2version/negative/3_3_2.png");
 
-    this.load.image("room4_1", "src/assets/sprites/2version/negative/4_1.png");
-    this.load.image("room4_2", "src/assets/sprites/2version/negative/4_2.png");
-    this.load.image("room4_3", "src/assets/sprites/2version/negative/4_3.png");
+    this.load.image("room4_1", "src/assets/sprites/2version/negative/4_1_2.png");
+    this.load.image("room4_2", "src/assets/sprites/2version/negative/4_2_2.png");
+    this.load.image("room4_3", "src/assets/sprites/2version/negative/4_3_2.png");
 
-    this.load.image("room5_1", "src/assets/sprites/2version/negative/5_1.png");
-    this.load.image("room5_2", "src/assets/sprites/2version/negative/5_2.png");
-    this.load.image("room5_3", "src/assets/sprites/2version/negative/5_3.png");
+    this.load.image("room5_1", "src/assets/sprites/2version/negative/5_1_2.png");
+    this.load.image("room5_2", "src/assets/sprites/2version/negative/5_2_2.png");
+    this.load.image("room5_3", "src/assets/sprites/2version/negative/5_3_2.png");
 
-    this.load.image("spot_1", "src/assets/sprites/2version/positive/spot1.png");
-    this.load.image("spot_2", "src/assets/sprites/2version/positive/spot2.png");
+    this.load.image("spot_1", "src/assets/sprites/2version/positive/spot1_2.png");
+    this.load.image("spot_2", "src/assets/sprites/2version/positive/spot2_2.png");
 
-    this.load.image("coin", "src/assets/sprites/2version/positive/coin.png");
+    this.load.image("coin", "src/assets/sprites/2version/positive/coin_2.png");
 
     this.load.image("positive1", "src/assets/sprites/2version/positive/positive1.png");
     this.load.image("positive2", "src/assets/sprites/2version/positive/positive2.png");

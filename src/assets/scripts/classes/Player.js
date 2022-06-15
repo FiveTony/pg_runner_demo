@@ -1,9 +1,9 @@
 const BG_WIDTH = 1165
 const WIDTH = 1920
 
-const LEFT = 600
-const CENTER = 1000
-const RIGHT = 1400
+const LEFT = 700
+const CENTER = 975
+const RIGHT = 1250
 
 export default class Player extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, frame, config) {
