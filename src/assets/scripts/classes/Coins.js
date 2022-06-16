@@ -5,30 +5,36 @@ const X_1 = 700
 const X_2 = 975
 const X_3 = 1250
 
-const DATA = [
-    [X_2, -600],
-    [X_3, -8000],
-    [X_1, -1600],
-    [X_2, -920],
-    [X_2, -900],
-    [X_2, -1200],
-    [X_1, -600],
-    [X_2, -1400],
+const WIDTH = 1920
+const HEIGHT = 1080
 
-    [X_2, -1100],
-    [X_3, -800],
-    [X_3, -700],
-    [X_2, -1100],
-    [X_2, -1200],
-    [X_3, -800],
+const DATA = [
+    [X_2, -450],
+    [X_3, -1120],
+    [X_1, -1550],
+    [X_2, -2000],
+    
+    [X_2, -200],
+    [X_2, -750],
+    [X_1, -1600],
+    [X_2, -2300],
+
+    [X_2, -920],
+    [X_3, -1350],
+    [X_3, -2100],
+    [X_2, -2600],
+
+    [X_2, -400],
     [X_3, -1100],
-    [X_2, -1100],
-    [X_2, -1200],
-    [X_3, -800],
-    [X_2, -1100],
-    [X_3, -1100],
-    [X_2, -1200],
-    [X_3, -800],
+    [X_3, -2200],
+    [X_2, -2650],
+
+    [X_2, -550],
+    [X_3, -1300],
+    [X_2, -2100],
+    [X_3, -2600],
+    // [X_2, -1200],
+    // [X_3, -800],
 ]
 
 
@@ -42,8 +48,7 @@ export default class Coins extends Phaser.Physics.Arcade.Group {
 
         this.scene.events.on("leave", ()=>{
             if (this.scene.count_created_scenes > 2 ) {
-                if (this.count_created === 22) this.count_created = 0
-                console.log("createCoin", this.count_created)
+                if (this.count_created === 20) this.count_created = 0
                 this.createCoin()
                 this.createCoin()
                 this.createCoin()
@@ -88,7 +93,7 @@ export default class Coins extends Phaser.Physics.Arcade.Group {
         this.add(elem_7)
 
         let data_8 = DATA[5]
-        let elem_8 = new Coin(this.scene, X_2, -4200, 'coin')
+        let elem_8 = new Coin(this.scene, X_2, -4100, 'coin')
         elem_8.move()
         this.add(elem_8)
 
@@ -99,7 +104,7 @@ export default class Coins extends Phaser.Physics.Arcade.Group {
         let elem = this.getFirstDead()
         if (!elem) {
             console.log("!elem________")
-            elem = new Spot(this.scene, data[0], data[1], 'coin')
+            elem = new Coin(this.scene, data[0], data[1], 'coin')
         } else elem.reset(data[0], data[1], 'coin')
         this.count_created++
         }

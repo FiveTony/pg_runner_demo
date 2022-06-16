@@ -3,6 +3,9 @@ import Room from "./Room"
 const BG_WIDTH = 900
 const BG_HEIGHT = 2880
 
+const WIDTH = 1920
+const HEIGHT = 1080
+
 export default class Rooms extends Phaser.Physics.Arcade.Group {
     constructor(scene) {
         super(scene.physics.world, scene)
@@ -15,23 +18,21 @@ export default class Rooms extends Phaser.Physics.Arcade.Group {
             // console.log("leave",this.scene.room_num);
             this.createSecondRoom();
             this.scene.children.bringToTop(this.scene.player)
+            this.scene.children.bringToTop(this.scene.ui)
         }, this)
     }
     createFirstRoom() {     
-        let first_room = new Room(this.scene, this.scene.game.config.width / 2 + BG_WIDTH / 2,this.scene.game.config.height, "room1")
+        let first_room = new Room(this.scene, WIDTH / 2 + BG_WIDTH / 2, HEIGHT, "room1")
         this.add(first_room)
         first_room.move()
         this.countCreated++
         this.scene.room_num++
         this.scene.count_created_scenes++
-        // console.log(this.scene.room_num)
     }
     createSecondRoom() {
-        // console.log(this.countCreated, this.scene.room_num)
-
         let second_room = this.getFirstDead()
         if (!second_room) {
-            second_room = new Room(this.scene, this.scene.game.config.width / 2 + BG_WIDTH / 2, 0, "room2")
+            second_room = new Room(this.scene, WIDTH / 2 + BG_WIDTH / 2, 0, "room2")
             this.add(second_room)
         } else {
             let room_sprite

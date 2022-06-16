@@ -1,38 +1,54 @@
 const BG_WIDTH = 900
 const BG_HEIGHT = 2880
 
+const WIDTH = 1920
+const HEIGHT = 1080
+
 export default class Borders extends Phaser.Physics.Arcade.Group {
     constructor(scene) {
         super(scene.physics.world, scene)
         this.scene = scene
 
-        this.left_x = this.scene.game.config.width / 2 - 246
-        this.right_x = this.scene.game.config.width / 2 + 246
+        this.left_x = WIDTH / 2 - 246
+        this.right_x = WIDTH / 2 + 248
+
+        this.count_created = 0
+
+        this.createFirstBorders()
 
         this.scene.events.on("leave", ()=>{
-            // console.log("BORDER leave", this.scene.events.listenerCount("update"));
-            this.createBorder();
+            if (this.scene.count_created_scenes > 2 && this.scene.room_num !== 1) {
+                if (this.count_created === 10) this.count_created = 0
+                console.log("ROOM NUM: ",this.scene.room_num)
+                this.createBorder(this.left_x)
+                this.createBorder(this.right_x)
+            }
         }, this)
     }
-    createBorder() {
-        if (this.scene.room_num !== 1) {
-            let y = -26
-        // let left_border = this.getFirstDead()
-        // let right_border = this.getFirstDead()
-        // if (!left_border) {
-            let left_border = new Border(this.scene, this.left_x, y, `border`)
-            this.add(left_border)
-        // } 
-        // else left_border.reset(this.scene.game.config.width / 2 - 700 / 2)
-        // if (!right_border) {
-            let right_border = new Border(this.scene, this.right_x, y, `border`)
-            this.add(right_border)
-        // } 
-        // else right_border.reset(this.scene.game.config.width / 2 + 900 / 2)
-        left_border.move()
-        right_border.move()
-        }
-        //  console.log("createBorder()",this.scene.events.listenerCount("update"), this.scene.events.listeners("update"))
+    createFirstBorders() {
+        // let data_1 = DATA[0]
+        let elem_1 = new Border(this.scene, this.left_x, -2880 + HEIGHT + 25, 'border')
+        elem_1.move()
+        this.add(elem_1)
+        // let data_2 = DATA[0]
+        let elem_2 = new Border(this.scene, this.right_x, -2880 + HEIGHT + 25, 'border')
+        elem_2.move()
+        this.add(elem_2)
+        // let data_3 = DATA[0]
+        // let elem_3 = new Border(this.scene, this.left_x, -2880, 'border')
+        // elem_3.move()
+        // this.add(elem_3)
+        // let data_4 = DATA[0]
+        // let elem_4 = new Border(this.scene, this.right_x, -2880, 'border')
+        // elem_4.move()
+        // this.add(elem_4)
+        this.count_created = 2
+    }
+    createBorder(x) {
+        let elem = this.getFirstDead()
+        elem.reset(x, -25)
+        elem.move()
+        this.count_created++
     }
 }
 
@@ -42,33 +58,29 @@ class Border extends Phaser.GameObjects.Sprite {
         this.scene.add.existing(this)
         this.scene.physics.add.existing(this)
         this.body.enable = true
-        // this.setScale(2)
+        this.alive_status = true
         this.init()
-        // this.scene.children.moveDown(this)
     }
     init() {
         this.scene.events.on('update', this.update, this)
     }
     update(timestep, dt) {
-        if (this.y > 1098){
-            // this.setAlive(false)
-            this.destroy()
+        if (this.y > 1100 && this.alive_status){
+            this.setAlive(false)
         } 
         this.y += this.velocityY
     }
-    // setAlive(status) {   
-    //     this.body.enable = status  
-    //     this.setVisible(status)
-    //     this.setActive(status)
-    // }
-    // reset(x) {
-    //     console.log("BORDER reset()",this.scene.events.listenerCount("update"))
-    //     // this.scene.children.moveDown(this)
-    //     console.log(x)
-    //     this.x = x
-    //     this.y = 0
-    //     this.setAlive(true)
-    // }
+    setAlive(status) {   
+        this.alive_status = status
+        this.body.enable = status  
+        this.setVisible(status)
+        this.setActive(status)
+    }
+    reset(x, y) {
+        this.x = x
+        this.y = y
+        this.setAlive(true)        
+    }
     move() {
         this.velocityY = this.scene.game_velocity
     }

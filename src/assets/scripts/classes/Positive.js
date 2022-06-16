@@ -6,19 +6,23 @@ const X_2 = 975
 const X_3 = 1250
 
 const DATA = [
-    [X_3, -600],
-    [X_1, -8000],
-    [X_1, -1600],
-    [X_2, -920],
-    [X_2, -900],
-    [X_2, -1200],
+    [X_3, -800],
+    [X_1, -2400],
 
-    [X_2, -850],
-    [X_2, -1050],
-    [X_3, -2300],
+    [X_1, -1000],
+    [X_2, -2600],
+
+    [X_2, -450],
+    [X_2, -1350],
+
+    [X_2, -1600],
+    [X_3, -2650],
+    
     [X_2, -800],
-    [X_3, -700],
-    [X_3, -1100]
+    [X_1, -2600],
+
+    // [X_3, -2300],
+    // [X_3, -4660]
 ]
 
 
@@ -31,11 +35,13 @@ export default class Positive extends Phaser.Physics.Arcade.Group {
         this.createFirstElements()
 
         this.scene.events.on("leave", ()=>{
-            if (this.scene.count_created_scenes > 2 ) {
-                if (this.count_created === 15) this.count_created = 0
+            if (this.scene.count_created_scenes > 3 ) {
+                if (this.count_created === 10) {
+                    this.count_created = 0
+                }
                 this.createPositiveObject()
                 this.createPositiveObject()
-                this.createPositiveObject()
+                // this.createPositiveObject()
             }
         }, this)
     }
@@ -61,12 +67,12 @@ export default class Positive extends Phaser.Physics.Arcade.Group {
         this.add(elem_4)
 
         let data_5 = DATA[4]
-        let elem_5 = new PositiveObject(this.scene, X_2, -5800, 'positive5')
+        let elem_5 = new PositiveObject(this.scene, X_2, -5100, 'positive5')
         elem_5.move()
-        this.add(elem_5)
+        this.add(elem_5)        
 
         let data_6 = DATA[5]
-        let elem_6 = new PositiveObject(this.scene, X_2, -6300, 'positive6')
+        let elem_6 = new PositiveObject(this.scene, X_2, -5900, 'positive6')
         elem_6.move()
         this.add(elem_6)
 

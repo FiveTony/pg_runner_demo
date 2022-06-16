@@ -1,28 +1,33 @@
 const BG_WIDTH = 900
 const BG_HEIGHT = 2880
 
-const DATA = [
-    [265, -800, 'spot_1'],
-    [1220, -1000, 'spot_2'],
-    [1250, -1900, 'spot_1'],
-    [200, -720, 'spot_2'],
-    [1220, -700, 'spot_1'],
-    [900, -900, 'spot_2'],
-    
-    [965, -800, 'spot_2'],
-    [1220, -900, 'spot_1'],
-    [1250, -1300, 'spot_2'],
-    [965, -600, 'spot_2'],
-    [1220, -900, 'spot_1'],
-    [1250, -1300, 'spot_2'],
-    [965, -900, 'spot_1'],
-    [1220, -600, 'spot_2'],
-    [1250, -1300, 'spot_2'],
-]
-
 const X_1 = 700
 const X_2 = 975
 const X_3 = 1250
+const DATA = [
+    [X_1, -450, 'spot_1'],
+    [X_2, -1120, 'spot_2'],
+    [X_2, -2400, 'spot_1'],
+
+    [X_2, -1000, 'spot_2'],
+    [X_1, -1350, 'spot_1'],
+    [X_3, -2600, 'spot_2'],
+    
+    [X_1, -450, 'spot_2'],
+    [X_3, -920, 'spot_1'],
+    [X_3, -2600, 'spot_2'],
+
+    [X_3, -400, 'spot_1'],
+    [X_3, -1600, 'spot_2'],
+    [X_1, -2200, 'spot_2'],
+
+    [X_3, -550, 'spot_2'],
+    [X_1, -800, 'spot_2'],
+    [X_1, -2100, 'spot_1'],
+]
+
+const WIDTH = 1920
+const HEIGHT = 1080
 
 export default class Spots extends Phaser.Physics.Arcade.Group {
     constructor(scene) {
@@ -64,7 +69,7 @@ export default class Spots extends Phaser.Physics.Arcade.Group {
         this.add(elem_4)
 
         let data_5 = DATA[4]
-        let elem_5 = new Spot(this.scene, X_1, -3600, 'spot_2')
+        let elem_5 = new Spot(this.scene, X_1, -3550, 'spot_2')
         elem_5.move()
         this.add(elem_5)
 

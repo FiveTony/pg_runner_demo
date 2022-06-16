@@ -2,22 +2,25 @@ const BG_WIDTH = 900
 const BG_HEIGHT = 2880
 
 const DATA = [
-    [665, -600, 'room1_1'],
-    [1220, -1200, 'room1_2'],
-    [1250, -1700, 'room1_3'],
-    [700, -620, 'room2_1'],
-    [1220, -700, 'room2_2'],
-    [800, -900, 'room2_3'],
+    [665, -900, 'room1_1'],
+    [1220, -1660, 'room1_2'],
+    [1270, -2460, 'room1_3'],
+    
+    [700, -520, 'room2_1'],
+    [1220, -1350, 'room2_2'],
+    [700, -2300, 'room2_3'],
 
     [670, -950, 'room3_1'],
     [802, -1800, 'room3_2'],
     [703, -2500, 'room3_3'],
-    [665, -400, 'room4_1'],
-    [1220, -600, 'room4_2'],
-    [1250, -1300, 'room4_3'],
-    [665, -400, 'room5_1'],
-    [1220, -600, 'room5_2'],
-    [1250, -1300, 'room5_3'],
+
+    [705, -950, 'room4_1'],
+    [692, -1800, 'room4_2'],
+    [703, -2500, 'room4_3'],
+
+    [1260, -300, 'room5_1'],
+    [690, -1300, 'room5_2'],
+    [1250, -2120, 'room5_3'],
 ]
 
 
@@ -32,7 +35,6 @@ export default class Negative extends Phaser.Physics.Arcade.Group {
 
         this.scene.events.on("leave", ()=>{
             if (this.scene.count_created_scenes > 2 ) {
-                // console.log(this.scene.events.listenerCount("update"), this.scene.children.getAll())
                 if (this.count_created === 15) this.count_created = 0
                 this.createNextNegative()
                 this.createNextNegative()
@@ -74,6 +76,7 @@ export default class Negative extends Phaser.Physics.Arcade.Group {
         this.count_created = 6
     }
     createNextNegative() {
+        
         let data = DATA[this.count_created]
         let elem = this.getFirstDead()
         if (!elem) {
@@ -95,6 +98,9 @@ class NegativeObject extends Phaser.GameObjects.Sprite {
         this.body.enable = true
         this.init()
         this.alive_status = true
+
+        this.body.height = this.height
+        this.body.width = this.width
     }
     init() {
         this.scene.events.on('update', this.update, this)
@@ -116,8 +122,10 @@ class NegativeObject extends Phaser.GameObjects.Sprite {
         this.y = y
         this.setTexture(sprite)
         this.setAlive(true)
+        this.body.width = this.width
+        this.body.height = this.height
 
-        this.scene.children.bringToTop(this)
+        // this.scene.children.bringToTop(this)
         
     }
     move() {
