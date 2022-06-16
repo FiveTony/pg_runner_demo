@@ -18,14 +18,15 @@ var Phaser = {
   Input: require("./node_modules/phaser/src/input"),
   Loader: {
     FileTypes: {
-        AudioFile: require('./node_modules/phaser/src/loader/filetypes/AudioFile'),
-        AudioSpriteFile: require('./node_modules/phaser/src/loader/filetypes/AudioSpriteFile'),
-        HTML5AudioFile: require('./node_modules/phaser/src/loader/filetypes/HTML5AudioFile'),
-        ImageFile: require('./node_modules/phaser/src/loader/filetypes/ImageFile'),
-        JSONFile: require('./node_modules/phaser/src/loader/filetypes/JSONFile'),
-        PluginFile: require('./node_modules/phaser/src/loader/filetypes/PluginFile'),
-        ScriptFile: require('./node_modules/phaser/src/loader/filetypes/ScriptFile'),
-        SVGFile: require('./node_modules/phaser/src/loader/filetypes/SVGFile')
+      AudioFile: require('./node_modules/phaser/src/loader/filetypes/AudioFile'),
+      AudioSpriteFile: require('./node_modules/phaser/src/loader/filetypes/AudioSpriteFile'),
+      AtlasJSONFile: require('./node_modules/phaser/src/loader/filetypes/AtlasJSONFile'),
+      HTML5AudioFile: require('./node_modules/phaser/src/loader/filetypes/HTML5AudioFile'),
+      ImageFile: require('./node_modules/phaser/src/loader/filetypes/ImageFile'),
+      JSONFile: require('./node_modules/phaser/src/loader/filetypes/JSONFile'),
+      PluginFile: require('./node_modules/phaser/src/loader/filetypes/PluginFile'),
+      ScriptFile: require('./node_modules/phaser/src/loader/filetypes/ScriptFile'),
+      SVGFile: require('./node_modules/phaser/src/loader/filetypes/SVGFile'),
     },
     File: require('./node_modules/phaser/src/loader/File'),
     FileTypesManager: require('./node_modules/phaser/src/loader/FileTypesManager'),

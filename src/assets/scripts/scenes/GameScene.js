@@ -38,13 +38,12 @@ export default class GameScene extends Phaser.Scene {
     console.log("preload()")
 
     this.load.setBaseURL(document.location.href);
-    // this.load.image("bg", "src/assets/sprites/3.png");
 
-    // this.load.image("player", "src/assets/sprites/player2_2.png");
+    this.load.image("player_rita_1", "src/assets/sprites/2version/player/player_rita_1.png");
+    this.load.atlas(
+      "player_rita", "src/assets/sprites/2version/player/player_rita.png", 
+      "src/assets/sprites/2version/player/player_rita.json");
 
-    // this.load.image("bg_1", "src/assets/sprites/1_1.png");
-    // this.load.image("bg_2", "src/assets/sprites/1_2.png");
-    this.load.image("player1_1", "src/assets/sprites/player1_2.png");
     this.load.image("border", "src/assets/sprites/2version/border.png");
     this.load.image("room1", "src/assets/sprites/2version/room1.jpg");
     this.load.image("room2", "src/assets/sprites/2version/room2.jpg");
@@ -95,6 +94,7 @@ export default class GameScene extends Phaser.Scene {
     this.load.image("score_coin", "src/assets/sprites/2version/ui/score_coin.png");
     this.load.image("score_rectangle", "src/assets/sprites/2version/ui/score_rectangle.png");
 
+    
   }
   create() {
     console.log("create()")
@@ -105,8 +105,8 @@ export default class GameScene extends Phaser.Scene {
       this,
       this.game.config.width / 2,
       this.game.config.height / 2 + 100,
-      "player1_1",
-      {"playerScale": 0.7}
+      "player_rita_1",
+      {"playerScale": 0.7, hero: "rita"}
     )
 
     this.border = new Borders(this)
@@ -159,6 +159,8 @@ export default class GameScene extends Phaser.Scene {
   }
   onNegativeOverlap(source, target) {
     target.body.enable = false
+    this.cameras.main.shake(500, 0.005)
+
     console.log("NEGATIVE OVERLAP")
 
     this.tweens.add({
@@ -187,17 +189,71 @@ export default class GameScene extends Phaser.Scene {
     });
 
     if (this.hearts === 3){ 
-      this.ui.heart_1.setTexture('not_hp')
+      this.tweens.add({
+        targets: this.ui.heart_1,
+        scale: {
+          from: 1,
+          to: 2
+        },
+        alpha: {
+          from: 1,
+          to: 0
+        },
+        ease: "Power2",
+        duration: 450,
+        onComplete: () => {
+          this.ui.heart_1.setTexture('not_hp')
+          this.ui.heart_1.alpha = 1
+          this.ui.heart_1.scale = 1
+        },
+      });
+
+      // this.ui.heart_1.setTexture('not_hp')
       this.hearts--
     }
     else if (this.hearts === 2) {
+      this.tweens.add({
+        targets: this.ui.heart_2,
+        scale: {
+          from: 1,
+          to: 2
+        },
+        alpha: {
+          from: 1,
+          to: 0
+        },
+        ease: "Power2",
+        duration: 450,
+        onComplete: () => {
+          this.ui.heart_2.setTexture('not_hp')
+          this.ui.heart_2.alpha = 1
+          this.ui.heart_2.scale = 1
+        },
+      });
       this.hearts--
-      this.ui.heart_2.setTexture('not_hp')
+      // this.ui.heart_2.setTexture('not_hp')
   }
     else if (this.hearts === 1) {
-      
+      this.tweens.add({
+        targets: this.ui.heart_3,
+        scale: {
+          from: 1,
+          to: 2
+        },
+        alpha: {
+          from: 1,
+          to: 0
+        },
+        ease: "Power2",
+        duration: 450,
+        onComplete: () => {
+          this.ui.heart_3.setTexture('not_hp')
+          this.ui.heart_3.alpha = 1
+          this.ui.heart_3.scale = 1
+        },
+      });
       this.hearts--
-      this.ui.heart_3.setTexture('not_hp')
+      // this.ui.heart_3.setTexture('not_hp')
       // this.scene.stop()
       // this.scene.start("Game")
     }
