@@ -41,7 +41,6 @@ export default class Room extends Phaser.GameObjects.Sprite {
         this.setAlive(true)
         this.setTexture(room_sprite)
         this.scene.children.sendToBack(this)
-
     }
     move() {
         this.velocityY = this.scene.game_velocity

@@ -147,4 +147,5 @@ class Coin extends Phaser.GameObjects.Sprite {
     move() {
         this.velocityY = this.scene.game_velocity
     }
+    
 }

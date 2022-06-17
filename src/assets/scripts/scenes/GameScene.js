@@ -31,6 +31,8 @@ export default class GameScene extends Phaser.Scene {
     this.hearts = 3
     console.log("init()", this)
 
+    this.hero = "cat"
+
 
     this.count_created_scenes = 0
   }
@@ -39,16 +41,25 @@ export default class GameScene extends Phaser.Scene {
 
     this.load.setBaseURL(document.location.href);
 
+    this.load.image("podskazka", "src/assets/sprites/podskazka.png");
+
+
     this.load.image("player_rita_1", "src/assets/sprites/2version/player/player_rita_1.png");
     this.load.atlas(
       "player_rita", "src/assets/sprites/2version/player/player_rita.png", 
       "src/assets/sprites/2version/player/player_rita.json");
 
+    this.load.image("player_cat_1", "src/assets/sprites/2version/player/player_cat_1.png");
+    this.load.atlas(
+      "player_cat", "src/assets/sprites/2version/player/player_cat.png", 
+      "src/assets/sprites/2version/player/player_cat.json");
+
     this.load.image("border", "src/assets/sprites/2version/border.png");
+    this.load.image("border2", "src/assets/sprites/2version/border2.png");
     this.load.image("room1", "src/assets/sprites/2version/room1.jpg");
     this.load.image("room2", "src/assets/sprites/2version/room2.jpg");
     this.load.image("room3", "src/assets/sprites/2version/room3.jpg");
-    this.load.image("room5", "src/assets/sprites/2version/room5.jpg");
+    this.load.image("room5", "src/assets/sprites/2version/room5_2.jpg");
     this.load.image("left_element", "src/assets/sprites/2version/left_element1.jpg");
     this.load.image("right_element", "src/assets/sprites/2version/right_element1.jpg");
 
@@ -104,10 +115,12 @@ export default class GameScene extends Phaser.Scene {
     this.player = new Player(
       this,
       this.game.config.width / 2,
-      this.game.config.height / 2 + 100,
-      "player_rita_1",
-      {"playerScale": 0.7, hero: "rita"}
+      this.game.config.height / 2 + 300,
+      `player_${this.hero}_1`,
+      {"playerScale": 0.7, hero: this.hero}
     )
+
+    this.podskazka = this.add.sprite(this.game.config.width / 2, this.game.config.height / 2 + 100, 'podskazka').setAlpha(0)
 
     this.border = new Borders(this)
     this.negative = new Negative(this)
@@ -120,8 +133,8 @@ export default class GameScene extends Phaser.Scene {
     this.addOverlap()
     
 
-    this.left_element = this.add .tileSprite(0, 0, 510, this.game.config.height, "left_element").setOrigin(0);
-    this.right_element = this.add .tileSprite(this.game.config.width - 510, 0, 0, this.game.config.height, "right_element").setOrigin(0);
+    this.left_element = this.add.tileSprite(0, 0, 510, this.game.config.height, "left_element").setOrigin(0);
+    this.right_element = this.add.tileSprite(this.game.config.width - 510, 0, 0, this.game.config.height, "right_element").setOrigin(0);
   }
   update(timestep, dt) {
     this.left_element.tilePositionY -= this.game_velocity
@@ -157,7 +170,7 @@ export default class GameScene extends Phaser.Scene {
       this
     );
   }
-  onNegativeOverlap(source, target) {
+  onNegativeOverlap(source, target) { // source - игрок
     target.body.enable = false
     this.cameras.main.shake(500, 0.005)
 
@@ -260,18 +273,102 @@ export default class GameScene extends Phaser.Scene {
     
   }
   onPositiveOverlap(source, target) {
-    target.setAlive(false);
+    target.body.enable = false
+
+    this.tweens.add({
+      targets: target,
+      scale: {
+        from: 1,
+        to: 2
+      },
+      alpha: {
+        from: 1,
+        to: 0.8
+      },
+      // y: "-=300",
+      ease: "Power2",
+      duration: 900,
+      onStart: () => {
+        // this.children.moveUp(target)        
+      },
+      onComplete: () => {
+        target.setAlive(false);
+        target.alpha = 1
+        target.scale = 1
+        // this.children.moveDown(target)
+      },
+    });
+    // target.setAlive(false);
     this.score += SCORE_POSITIVE
     this.ui.score_text.setText(`${this.score}`);
   }
   onCoinsOverlap(source, target) {
-    target.setAlive(false);
+    target.body.enable = false
+    this.tweens.add({
+      targets: target,
+      scale: {
+        from: 1,
+        to: 2
+      },
+      alpha: {
+        from: 1,
+        to: 0
+      },
+      ease: "Power2",
+      duration: 500,
+      onComplete: function () {
+        target.setAlive(false);
+        target.alpha = 1
+        target.scale = 1
+      },
+    });
+    // target.setAlive(false);
     this.score += SCORE_COIN
     this.ui.score_text.setText(`${this.score}`);
   }
   onSpotsOverlap(source, target) {
-    target.setAlive(false);
+    // this.createScoreAnimation()
+    target.body.enable = false
+    this.tweens.add({
+      targets: target,
+      scale: {
+        from: 1,
+        to: 2
+      },
+      alpha: {
+        from: 1,
+        to: 0
+      },
+      ease: "Power2",
+      duration: 500,
+      onComplete: function () {
+        target.setAlive(false);
+        target.alpha = 1
+        target.scale = 1
+      },
+    });
+    // target.setAlive(false);
     this.score += SCORE_SPOT
     this.ui.score_text.setText(`${this.score}`);
   }
+  // createScoreAnimation() {
+  //   this.podskazka.alpha = 1
+  //   this.tweens.add({
+  //     targets: this.podskazka,
+  //     alpha: {
+  //       from: 1,
+  //       to: 0
+  //     },
+  //     x: 678,
+  //     y: 69,
+  //     ease: "Power2",
+  //     duration: 3000,
+  //     yoyo: true,
+  //     onComplete: () => {
+  //       this.podskazka.alpha = 0
+  //       this.podskazka.x = this.game.config.width / 2
+  //       this.podskazka.x = this.game.config.height / 2 + 100
+  //     },
+  //   });
+  // }
 }

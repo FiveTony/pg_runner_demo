@@ -9,15 +9,15 @@ export default class Borders extends Phaser.Physics.Arcade.Group {
         super(scene.physics.world, scene)
         this.scene = scene
 
-        this.left_x = WIDTH / 2 - 246
-        this.right_x = WIDTH / 2 + 248
+        this.left_x = WIDTH / 2 - 268
+        this.right_x = WIDTH / 2 + 268
 
         this.count_created = 0
 
         this.createFirstBorders()
 
         this.scene.events.on("leave", ()=>{
-            if (this.scene.count_created_scenes > 2 && this.scene.room_num !== 1) {
+            if (this.scene.count_created_scenes > 2) {
                 if (this.count_created === 10) this.count_created = 0
                 console.log("ROOM NUM: ",this.scene.room_num)
                 this.createBorder(this.left_x)
@@ -27,11 +27,11 @@ export default class Borders extends Phaser.Physics.Arcade.Group {
     }
     createFirstBorders() {
         // let data_1 = DATA[0]
-        let elem_1 = new Border(this.scene, this.left_x, -2880 + HEIGHT + 25, 'border')
+        let elem_1 = new Border(this.scene, this.left_x, -2880 + HEIGHT + 25, 'border2')
         elem_1.move()
         this.add(elem_1)
         // let data_2 = DATA[0]
-        let elem_2 = new Border(this.scene, this.right_x, -2880 + HEIGHT + 25, 'border')
+        let elem_2 = new Border(this.scene, this.right_x, -2880 + HEIGHT + 25, 'border2')
         elem_2.move()
         this.add(elem_2)
         // let data_3 = DATA[0]
@@ -46,7 +46,7 @@ export default class Borders extends Phaser.Physics.Arcade.Group {
     }
     createBorder(x) {
         let elem = this.getFirstDead()
-        elem.reset(x, -25)
+        elem.reset(x, -27)
         elem.move()
         this.count_created++
     }
