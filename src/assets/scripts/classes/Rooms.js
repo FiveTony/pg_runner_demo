@@ -17,8 +17,9 @@ export default class Rooms extends Phaser.Physics.Arcade.Group {
         this.scene.events.on("leave", ()=>{
             // console.log("leave",this.scene.room_num);
             this.createSecondRoom();
-            this.scene.children.bringToTop(this.scene.player)
-            this.scene.children.bringToTop(this.scene.ui)
+
+            // this.scene.children.bringToTop(this.scene.player)
+            // this.scene.children.bringToTop(this.scene.ui)
         }, this)
     }
     createFirstRoom() {     

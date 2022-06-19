@@ -39,8 +39,9 @@ export default class Spots extends Phaser.Physics.Arcade.Group {
 
         this.scene.events.on("leave", ()=>{
             if (this.scene.count_created_scenes > 2 ) {
-                // console.log(this.scene.events.listenerCount("update"), this.scene.children.getAll())
-                if (this.count_created === 15) this.count_created = 0
+                // console.log("UPDATE ",this.scene.events.listenerCount("update"))
+                // console.log("LEAVE ",this.scene.events.listenerCount("leave"))
+                    if (this.count_created === 15) this.count_created = 0
                 this.createSpot()
                 this.createSpot()
                 this.createSpot()

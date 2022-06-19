@@ -1,6 +1,3 @@
-const BG_WIDTH = 1165
-const WIDTH = 1920
-
 const LEFT = 700
 const CENTER = 975
 const RIGHT = 1250
@@ -30,22 +27,24 @@ export default class Player extends Phaser.GameObjects.Sprite {
   }
   createControlKeyboard() {
     this.scene.input.keyboard.on('keyup-LEFT', function(event) {
-      if (this.direction === 0) {
-        this.x = LEFT
-        this.direction = -1
-      } else if (this.direction === 1) {
-        this.x = CENTER
-        this.direction = 0
-      }
+      this.leftMove()
+      // if (this.direction === 0) {
+      //   this.x = LEFT
+      //   this.direction = -1
+      // } else if (this.direction === 1) {
+      //   this.x = CENTER
+      //   this.direction = 0
+      // }
     },this);
     this.scene.input.keyboard.on('keyup-RIGHT', function(event) {
-      if (this.direction === 0) {
-        this.x = RIGHT
-        this.direction = 1
-      } else if (this.direction === -1) {
-        this.x = CENTER
-        this.direction = 0
-      }
+      this.rightMove()
+      // if (this.direction === 0) {
+      //   this.x = RIGHT
+      //   this.direction = 1
+      // } else if (this.direction === -1) {
+      //   this.x = CENTER
+      //   this.direction = 0
+      // }
     },this);
   }
   setAnimation() {
@@ -64,5 +63,23 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.play("player_animation");
     // this.player1.anims.pause();
+  }
+  leftMove() {
+    if (this.direction === 0) {
+      this.x = LEFT
+      this.direction = -1
+    } else if (this.direction === 1) {
+      this.x = CENTER
+      this.direction = 0
+    }
+  }
+  rightMove() {
+    if (this.direction === 0) {
+      this.x = RIGHT
+      this.direction = 1
+    } else if (this.direction === -1) {
+      this.x = CENTER
+      this.direction = 0
+    }
   }
 }

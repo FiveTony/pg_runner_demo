@@ -6,10 +6,10 @@ import PreloadScene from "./src/assets/scripts/scenes/PreloadScene";
 import StartScene from "./src/assets/scripts/scenes/StartScene";
 import GameScene from "./src/assets/scripts/scenes/GameScene";
 
-import ShakePositionPlugin from 'phaser3-rex-plugins/plugins/shakeposition-plugin.js';
-
-
 var scenes = [
+  BootScene,
+  PreloadScene,
+  StartScene,
   GameScene,
 ];
 
@@ -17,8 +17,6 @@ var config = {
   type: Phaser.AUTO,
   width: 1920,
   height: 1080,
-  // width: 800,
-  // height: 600,
   scene: scenes,
   scale: {
     mode: Phaser.Scale.FIT,
@@ -57,14 +55,19 @@ var config = {
     panicMax: 600,
     smoothStep: true,
   },
-  plugins: {
-    global: [{
-      key: 'rexShakePosition',
-      plugin: ShakePositionPlugin,
-      start: true
-    },
-    ]
-  }
 };
 
-var game = new Phaser.Game(config);
+// var game = new Phaser.Game(config);
+
+
+var WebFont = require("webfontloader");
+WebFont.load({
+  custom: {
+    families: ["Monserrat-Bold, Monserrat-Medium"],
+    urls: ["src/assets/styles/fonts.css"],
+  },
+  active: function () {
+    console.log("FONTS")
+    var game = new Phaser.Game(config);
+  },
+});

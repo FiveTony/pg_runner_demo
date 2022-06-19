@@ -4,40 +4,40 @@
 			"frame": {
 				"x": 1,
 				"y": 1,
-				"w": 226,
-				"h": 313
+				"w": 241,
+				"h": 335
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 226,
-				"h": 313
+				"w": 241,
+				"h": 335
 			},
 			"sourceSize": {
-				"w": 226,
-				"h": 313
+				"w": 241,
+				"h": 335
 			}
 		},
 		"player_rita_2": {
 			"frame": {
-				"x": 229,
+				"x": 244,
 				"y": 1,
-				"w": 226,
-				"h": 313
+				"w": 241,
+				"h": 335
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 226,
-				"h": 313
+				"w": 241,
+				"h": 335
 			},
 			"sourceSize": {
-				"w": 226,
-				"h": 313
+				"w": 241,
+				"h": 335
 			}
 		}
 	},
@@ -47,8 +47,8 @@
 		"image": "spritesheet.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 456,
-			"h": 315
+			"w": 486,
+			"h": 337
 		},
 		"scale": "1"
 	}

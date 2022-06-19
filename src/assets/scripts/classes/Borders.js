@@ -19,7 +19,6 @@ export default class Borders extends Phaser.Physics.Arcade.Group {
         this.scene.events.on("leave", ()=>{
             if (this.scene.count_created_scenes > 2) {
                 if (this.count_created === 10) this.count_created = 0
-                console.log("ROOM NUM: ",this.scene.room_num)
                 this.createBorder(this.left_x)
                 this.createBorder(this.right_x)
             }

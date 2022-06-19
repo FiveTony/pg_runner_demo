@@ -119,7 +119,9 @@ class PositiveObject extends Phaser.GameObjects.Sprite {
         this.x = x
         this.y = y
         this.setTexture(sprite)
-        this.setAlive(true)        
+        this.setAlive(true)     
+        // this.scene.children.bringToTop(this.scene.ui)   
+        // console.log(this.scene.children.getAll())        
     }
     move() {
         this.velocityY = this.scene.game_velocity

@@ -15,6 +15,7 @@ var Phaser = {
   Events: require("./node_modules/phaser/src/events/index"),
   Game: require("./node_modules/phaser/src/core/Game"),
   GameObjects: require("./node_modules/phaser/src/gameobjects"),
+  Geom: require("./node_modules/phaser/src/geom"),
   Input: require("./node_modules/phaser/src/input"),
   Loader: {
     FileTypes: {
@@ -35,6 +36,7 @@ var Phaser = {
   Math: {
     Between: require("./node_modules/phaser/src/math/Between"),
     FloatBetween: require("./node_modules/phaser/src/math/FloatBetween"),
+    DegToRad: require("./node_modules/phaser/src/math/DegToRad")
   },
   DOM: require("./node_modules/phaser/src/dom"),
   Physics: require("./node_modules/phaser/src/physics"),

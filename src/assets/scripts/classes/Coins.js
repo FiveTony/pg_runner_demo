@@ -1,6 +1,3 @@
-const BG_WIDTH = 900
-const BG_HEIGHT = 2880
-
 const X_1 = 700
 const X_2 = 975
 const X_3 = 1250
@@ -128,6 +125,7 @@ class Coin extends Phaser.GameObjects.Sprite {
             this.setAlive(false)
         } 
         this.y += this.velocityY
+        this.angle += this.myRotate
     }
     setAlive(status) {   
         this.alive_status = status
@@ -146,6 +144,7 @@ class Coin extends Phaser.GameObjects.Sprite {
     }
     move() {
         this.velocityY = this.scene.game_velocity
+        this.myRotate = 0.5
     }
-    
+
 }
