@@ -41,8 +41,9 @@ export default class Rooms extends Phaser.Physics.Arcade.Group {
                 room_sprite = "room5"
                 this.scene.room_num = 0
             }
-            else if (this.scene.room_num === 2 || this.scene.room_num === 4 ) room_sprite = "room2"
+            else if (this.scene.room_num === 2) room_sprite = "room2"
             else if (this.scene.room_num === 3) room_sprite = "room3"
+            else if (this.scene.room_num === 4) room_sprite = "room4"
             else room_sprite = "room1"
             second_room.reset(room_sprite)
         }

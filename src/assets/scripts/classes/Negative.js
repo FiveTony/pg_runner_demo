@@ -6,15 +6,15 @@ const DATA = [
     [1220, -1660, 'room1_2'],
     [1270, -2460, 'room1_3'],
     
-    [700, -520, 'room2_1'],
+    [700, -670, 'room2_1'],
     [1220, -1350, 'room2_2'],
     [700, -2300, 'room2_3'],
 
-    [670, -950, 'room3_1'],
+    [670, -1050, 'room3_1'],
     [802, -1800, 'room3_2'],
     [703, -2500, 'room3_3'],
 
-    [705, -950, 'room4_1'],
+    [705, -1130, 'room4_1'],
     [692, -1800, 'room4_2'],
     [703, -2500, 'room4_3'],
 
@@ -59,7 +59,7 @@ export default class Negative extends Phaser.Physics.Arcade.Group {
         this.add(elem_3)
 
         let data_4 = DATA[3]
-        let elem_4 = new NegativeObject(this.scene, 700, -2330, 'room2_1')
+        let elem_4 = new NegativeObject(this.scene, 700, -2470, 'room2_1')
         elem_4.move()
         this.add(elem_4)
 

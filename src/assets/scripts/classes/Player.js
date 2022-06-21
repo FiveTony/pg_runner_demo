@@ -26,7 +26,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
     
   }
   createControlKeyboard() {
-    this.scene.input.keyboard.on('keyup-LEFT', function(event) {
+    this.scene.input.keyboard.on('keydown-LEFT', function(event) {
       this.leftMove()
       // if (this.direction === 0) {
       //   this.x = LEFT
@@ -36,7 +36,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       //   this.direction = 0
       // }
     },this);
-    this.scene.input.keyboard.on('keyup-RIGHT', function(event) {
+    this.scene.input.keyboard.on('keydown-RIGHT', function(event) {
       this.rightMove()
       // if (this.direction === 0) {
       //   this.x = RIGHT

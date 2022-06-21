@@ -1,43 +1,43 @@
 {
 	"frames": {
-		"player_cat_1": {
+		"player_dima_1": {
 			"frame": {
 				"x": 1,
 				"y": 1,
-				"w": 194,
-				"h": 292
+				"w": 261,
+				"h": 347
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 194,
-				"h": 292
+				"w": 261,
+				"h": 347
 			},
 			"sourceSize": {
-				"w": 194,
-				"h": 292
+				"w": 261,
+				"h": 347
 			}
 		},
-		"player_cat_2": {
+		"player_dima_2": {
 			"frame": {
-				"x": 197,
+				"x": 264,
 				"y": 1,
-				"w": 196,
-				"h": 293
+				"w": 261,
+				"h": 346
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 196,
-				"h": 293
+				"w": 261,
+				"h": 346
 			},
 			"sourceSize": {
-				"w": 196,
-				"h": 293
+				"w": 261,
+				"h": 346
 			}
 		}
 	},
@@ -47,8 +47,8 @@
 		"image": "spritesheet.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 394,
-			"h": 295
+			"w": 526,
+			"h": 349
 		},
 		"scale": "1"
 	}

@@ -11,20 +11,20 @@ const DATA = [
     [X_1, -1550],
     [X_2, -2000],
     
-    [X_2, -200],
-    [X_2, -750],
-    [X_1, -1600],
-    [X_2, -2300],
+    [X_2, -150],
+    [X_2, -700],
+    [X_1, -1550],
+    [X_2, -2320],
 
     [X_2, -920],
     [X_3, -1350],
     [X_3, -2100],
     [X_2, -2600],
 
-    [X_2, -400],
-    [X_3, -1100],
-    [X_3, -2200],
-    [X_2, -2650],
+    [X_2, -410],
+    [X_3, -1230],
+    [X_3, -2090],
+    [X_2, -2630],
 
     [X_2, -550],
     [X_3, -1300],
@@ -75,22 +75,22 @@ export default class Coins extends Phaser.Physics.Arcade.Group {
         this.add(elem_4)
 
         let data_5 = DATA[4]
-        let elem_5 = new Coin(this.scene, X_2, -2000, 'coin')
+        let elem_5 = new Coin(this.scene, X_2, -1950, 'coin')
         elem_5.move()
         this.add(elem_5)
 
         let data_6 = DATA[5]
-        let elem_6 = new Coin(this.scene, X_2, -2650, 'coin')
+        let elem_6 = new Coin(this.scene, X_2, -2750, 'coin')
         elem_6.move()
         this.add(elem_6)
 
         let data_7 = DATA[5]
-        let elem_7 = new Coin(this.scene, X_1, -3220, 'coin')
+        let elem_7 = new Coin(this.scene, X_1, -3300, 'coin')
         elem_7.move()
         this.add(elem_7)
 
         let data_8 = DATA[5]
-        let elem_8 = new Coin(this.scene, X_2, -4100, 'coin')
+        let elem_8 = new Coin(this.scene, X_2, -4120, 'coin')
         elem_8.move()
         this.add(elem_8)
 

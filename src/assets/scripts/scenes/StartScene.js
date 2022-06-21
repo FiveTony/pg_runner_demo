@@ -8,9 +8,18 @@ export default class StartScene extends Phaser.Scene {
   }
   create() {
     this.createBackground();
-    // this.setEvents();
-    console.log("PPPPPPPP")
-    this.scene.start("Game", {hero: "cat"});
+    this.createCharacters()
+    // this.createMusic()
+    this.main_theme = this.sound.add("main_theme", {
+      mute: false,
+      volume: 0.2,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: true,
+      delay: 0,
+    });
+    this.main_theme.play();
 
   }
   createBackground() {
@@ -27,21 +36,96 @@ export default class StartScene extends Phaser.Scene {
 
   }).setOrigin(0.5)
   }
-  setEvents() {
-    // this.input.on("pointerdown", () => {
-    //   this.scene.start("Game", {
-    //     score: 0,
-    //     hearts: HEARTS,
-    //     status: "first",
-    //   });
-    // });
-    // this.input.keyboard.on("keydown", () => {
-    //   this.scene.start("Game", {
-    //     score: 0,
-    //     hearts: HEARTS,
-    //     status: "first",
-    //   });
-    // });
+  createCharacters() {
+    this.add.sprite(375, 240, "charactersChoose" ,"rita_label")
+    this.rita_capture = this.add.sprite(370, 450, "charactersChoose" ,"rita_capture")
+    this.rita_text = this.add.sprite(370, 730, "charactersChoose" ,"rita_text")
+    this.add.sprite(370, 910, "charactersChoose" ,"rita_button")
+      .setInteractive()
+      .on("pointerdown", () => {
+        this.scene.start("Game", {
+          hero: "rita"
+        });
+      })
+      .on(
+        "pointermove",
+        function (pointer, x, y, event) {
+          this.rita_capture.scale = 1.2;
+          this.rita_text.angle = 5
+        }.bind(this)
+      )
+      .on(
+        "pointerout",
+        function (pointer, x, y, event) {
+          this.rita_capture.scale = 1;
+          this.rita_text.angle = 0
+
+        }.bind(this)
+      );
+
+    this.add.sprite(1920 / 2, 240, "charactersChoose" ,"dima_label")
+    this.dima_capture = this.add.sprite(1920 / 2, 450, "charactersChoose" ,"dima_capture")
+    this.dima_text = this.add.sprite(1920 / 2, 730, "charactersChoose" ,"dima_text")
+    this.add.sprite(1920 / 2, 910, "charactersChoose" ,"dima_button")
+      .setInteractive()
+      .on("pointerdown", () => {
+        this.scene.start("Game", {
+          hero: "dima"
+        });
+      })
+      .on(
+        "pointermove",
+        function (pointer, x, y, event) {
+          this.dima_capture.scale = 1.2;
+          this.dima_text.angle = 5
+        }.bind(this)
+      )
+      .on(
+        "pointerout",
+        function (pointer, x, y, event) {
+          this.dima_capture.scale = 1;
+          this.dima_text.angle = 0
+
+        }.bind(this)
+      );
+
+    this.add.sprite(1920 - 370, 240, "charactersChoose" ,"musya_label")
+    this.musya_capture = this.add.sprite(1920 - 370, 450, "charactersChoose" ,"musya_capture")
+    this.musya_text = this.add.sprite(1920 - 370, 730, "charactersChoose" ,"musya_text")
+    this.add.sprite(1920 - 370, 910, "charactersChoose" ,"musya_button")
+    .setInteractive()
+    .on("pointerdown", () => {
+      this.scene.start("Game", {
+        hero: "musya"
+      });
+    })
+    .on(
+      "pointermove",
+      function (pointer, x, y, event) {
+        this.musya_capture.scale = 1.2;
+        this.musya_text.angle = 5
+      }.bind(this)
+    )
+    .on(
+      "pointerout",
+      function (pointer, x, y, event) {
+        this.musya_capture.scale = 1;
+        this.musya_text.angle = 0
+
+      }.bind(this)
+    );
+  }
+  createMusic() {
+    this.main_theme = this.sound.add("main_theme", {
+      mute: false,
+      volume: 0.2,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      loop: true,
+      delay: 0,
+    });
+    this.main_theme.play();
   }
 
 }

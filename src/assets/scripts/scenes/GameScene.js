@@ -7,20 +7,14 @@ import Rooms from "../classes/Rooms";
 import Spots from "../classes/Spots";
 import UI_elements from "../classes/UI_elements";
 
-// const BG_WIDTH = 900
-// const BG_HEIGHT = 2880
-// const LEFT_LIMIT = 400;
-// const RIGHT_LIMIT = 1320;
-
 const WIDTH = 1920
 const HEIGHT = 1080
 
-const GAME_VELOCITY = 3
+const GAME_VELOCITY = 4
 
-const SCORE_SPOT = 1
-const SCORE_COIN = 3
+const SCORE_SPOT = 3
+const SCORE_COIN = 1
 const SCORE_POSITIVE = 5
-
 
 
 export default class GameScene extends Phaser.Scene {
@@ -37,6 +31,9 @@ export default class GameScene extends Phaser.Scene {
 
     this.mute = false
 
+    this.prompt1_flag = true
+    this.prompt3_flag = true
+    this.prompt5_flag = true
 
     this.count_created_scenes = 0
   }
@@ -46,16 +43,16 @@ export default class GameScene extends Phaser.Scene {
 
     this.player = new Player(
       this,
-      this.game.config.width / 2,
-      this.game.config.height / 2 + 300,
+      WIDTH / 2,
+      HEIGHT / 2 + 300,
+      //  this.game.config.width / 2,
+      // this.game.config.height / 2 + 300,
       `player_${this.hero}_1`,
       {"playerScale": 0.7, hero: this.hero}
     )
 
-    this.left_element = this.add.tileSprite(0, 0, 510, this.game.config.height, "left_element").setOrigin(0);
-    this.right_element = this.add.tileSprite(this.game.config.width - 510, 0, 0, this.game.config.height, "right_element").setOrigin(0);
-
-    // this.podskazka = this.add.sprite(this.game.config.width / 2, this.game.config.height / 2 + 100, 'podskazka').setAlpha(0)
+    this.left_element = this.add.tileSprite(0, 0, 510, HEIGHT, "left_element").setOrigin(0);
+    this.right_element = this.add.tileSprite(WIDTH - 510, 0, 0, HEIGHT, "right_element").setOrigin(0);
 
     this.border = new Borders(this)
     this.negative = new Negative(this)
@@ -65,6 +62,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.ui = new UI_elements(this, 0, 3)
 
+    this.createSounds()
     this.addOverlap()
     // this.createMusic()
     this.onMusic()
@@ -108,6 +106,9 @@ export default class GameScene extends Phaser.Scene {
   onNegativeOverlap(source, target) { // source - игрок
     target.body.enable = false
     this.cameras.main.shake(500, 0.005)
+    if (!this.mute) {
+      this.hero === "musya" ? this.get_negative_musya.play() : this.get_negative.play()
+    }
 
     this.tweens.add({
       targets: source,
@@ -202,17 +203,20 @@ export default class GameScene extends Phaser.Scene {
       // this.ui.heart_3.setTexture('not_hp')
       // this.scene.stop()
       // this.scene.start("Game")
-    }
-    
+    }  
   }
   onPositiveOverlap(source, target) {
+    if (!this.mute) this.get_positive.play()
     target.body.enable = false
-
+    if (this.prompt5_flag) {
+      this.createPrompt(5, target.x, target.y)
+      this.prompt5_flag = false
+    }
     this.tweens.add({
       targets: target,
       scale: {
-        from: 1,
-        to: 2
+        from: 0.6,
+        to: 1.2
       },
       alpha: {
         from: 1,
@@ -221,14 +225,10 @@ export default class GameScene extends Phaser.Scene {
       // y: "-=300",
       ease: "Power2",
       duration: 900,
-      onStart: () => {
-        // this.children.bringToTop(target)        
-      },
       onComplete: () => {
         target.setAlive(false);
         target.alpha = 1
-        target.scale = 1
-        // this.children.bringToTop(this.ui)        
+        target.scale = 0.6
       },
     });
     // target.setAlive(false);
@@ -236,7 +236,12 @@ export default class GameScene extends Phaser.Scene {
     this.ui.score_text.setText(`${this.score}`);
   }
   onCoinsOverlap(source, target) {
+    if (!this.mute) this.get_positive.play()
     target.body.enable = false
+    if (this.prompt1_flag) {
+      this.createPrompt(1, target.x, target.y)
+      this.prompt1_flag = false
+    }
     this.tweens.add({
       targets: target,
       scale: {
@@ -260,8 +265,12 @@ export default class GameScene extends Phaser.Scene {
     this.ui.score_text.setText(`${this.score}`);
   }
   onSpotsOverlap(source, target) {
-    // this.createScoreAnimation()
+    if (!this.mute) this.get_positive.play()
     target.body.enable = false
+    if (this.prompt3_flag) {
+      this.createPrompt(3, target.x, target.y)
+      this.prompt3_flag = false
+    }
     this.tweens.add({
       targets: target,
       scale: {
@@ -284,9 +293,43 @@ export default class GameScene extends Phaser.Scene {
     this.score += SCORE_SPOT
     this.ui.score_text.setText(`${this.score}`);
   }
-  createMusic() { 
-    // if (this.mute) this.scene.get("Start").main_theme.pause();
-    // else this.scene.get("Start").main_theme.resume();
+  muteMusic() { 
+    if (this.mute) this.scene.get("Start").main_theme.pause();
+    else this.scene.get("Start").main_theme.resume();
+  }
+  createSounds() {
+    this.get_positive = this.sound.add("get_positive", {
+      mute: false,
+      volume: 0.2,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      delay: 0,
+    });
+    this.get_negative = this.sound.add("get_negative", {
+      mute: false,
+      volume: 0.2,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      delay: 0,
+    });
+    this.get_negative_musya = this.sound.add("get_negative_musya", {
+      mute: false,
+      volume: 0.2,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      delay: 0,
+    });
+    this.win = this.sound.add("win", {
+      mute: false,
+      volume: 0.2,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      delay: 0,
+    });
   }
   onMusic() {
     this.ui.sound.on("pointerdown", () => {
@@ -306,14 +349,15 @@ export default class GameScene extends Phaser.Scene {
       // console.log("postupdate", this.events.listeners("postupdate"))
       // console.log("leave", this.events.listeners("leave"))
       // console.log("SCENES ", this.scene.manager.scenes)
+      // console.log(this.children.getAll())
       if (this.mute == false) {
         this.ui.sound.setTexture("musicOff");
         this.mute = true;
-        this.createMusic();
+        this.muteMusic();
       } else {
         this.ui.sound.setTexture("musicOn");
         this.mute = false;
-        this.createMusic();
+        this.muteMusic();
       }
     });
   }
@@ -322,38 +366,27 @@ export default class GameScene extends Phaser.Scene {
       new Phaser.Geom.Rectangle(0, 100, WIDTH / 2, HEIGHT),
       Phaser.Geom.Rectangle.Contains
     )
-    left.on("pointerdown",()=>{
-        console.log("LEFT")
-        this.player.leftMove()
-    })
+    left.on("pointerdown",() => this.player.leftMove())
 
     let right = this.add.container(0, 0).setInteractive(
       new Phaser.Geom.Rectangle(WIDTH / 2, 100, WIDTH, HEIGHT),
       Phaser.Geom.Rectangle.Contains
     )
-    right.on("pointerdown",()=>{
-        console.log("RIGHT")
-        this.player.rightMove()
-    })
+    right.on("pointerdown",()=>this.player.rightMove())
   }
-  // createScoreAnimation() {
-  //   this.podskazka.alpha = 1
-  //   this.tweens.add({
-  //     targets: this.podskazka,
-  //     alpha: {
-  //       from: 1,
-  //       to: 0
-  //     },
-  //     x: 678,
-  //     y: 69,
-  //     ease: "Power2",
-  //     duration: 3000,
-  //     yoyo: true,
-  //     onComplete: () => {
-  //       this.podskazka.alpha = 0
-  //       this.podskazka.x = this.game.config.width / 2
-  //       this.podskazka.x = this.game.config.height / 2 + 100
-  //     },
-  //   });
-  // }
+  createPrompt(num, x, y) {
+    let prompt = this.add.sprite(x, y, `prompt${num}`)
+    this.tweens.add({
+      targets: prompt,
+      alpha: {
+        from: 1,
+        to: 0
+      },
+      ease: "Power2",
+      duration: 1800,
+      onComplete: () => {
+        prompt.destroy()
+      },
+    });
+  }
 }
