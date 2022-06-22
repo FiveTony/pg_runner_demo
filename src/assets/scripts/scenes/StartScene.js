@@ -40,7 +40,7 @@ export default class StartScene extends Phaser.Scene {
     this.add.sprite(375, 240, "charactersChoose" ,"rita_label")
     this.rita_capture = this.add.sprite(370, 450, "charactersChoose" ,"rita_capture")
     this.rita_text = this.add.sprite(370, 730, "charactersChoose" ,"rita_text")
-    this.add.sprite(370, 910, "charactersChoose" ,"rita_button")
+    this.rita_button = this.add.sprite(370, 910, "rita_button")
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("Game", {
@@ -52,6 +52,7 @@ export default class StartScene extends Phaser.Scene {
         function (pointer, x, y, event) {
           this.rita_capture.scale = 1.2;
           this.rita_text.angle = 5
+          this.rita_button.setTexture("rita_button_hover")
         }.bind(this)
       )
       .on(
@@ -59,6 +60,7 @@ export default class StartScene extends Phaser.Scene {
         function (pointer, x, y, event) {
           this.rita_capture.scale = 1;
           this.rita_text.angle = 0
+          this.rita_button.setTexture("rita_button")
 
         }.bind(this)
       );
@@ -66,7 +68,7 @@ export default class StartScene extends Phaser.Scene {
     this.add.sprite(1920 / 2, 240, "charactersChoose" ,"dima_label")
     this.dima_capture = this.add.sprite(1920 / 2, 450, "charactersChoose" ,"dima_capture")
     this.dima_text = this.add.sprite(1920 / 2, 730, "charactersChoose" ,"dima_text")
-    this.add.sprite(1920 / 2, 910, "charactersChoose" ,"dima_button")
+    this.dima_button = this.add.sprite(1920 / 2, 910,"dima_button")
       .setInteractive()
       .on("pointerdown", () => {
         this.scene.start("Game", {
@@ -78,6 +80,7 @@ export default class StartScene extends Phaser.Scene {
         function (pointer, x, y, event) {
           this.dima_capture.scale = 1.2;
           this.dima_text.angle = 5
+          this.dima_button.setTexture("dima_button_hover")
         }.bind(this)
       )
       .on(
@@ -85,14 +88,14 @@ export default class StartScene extends Phaser.Scene {
         function (pointer, x, y, event) {
           this.dima_capture.scale = 1;
           this.dima_text.angle = 0
-
+          this.dima_button.setTexture("dima_button")
         }.bind(this)
       );
 
     this.add.sprite(1920 - 370, 240, "charactersChoose" ,"musya_label")
     this.musya_capture = this.add.sprite(1920 - 370, 450, "charactersChoose" ,"musya_capture")
     this.musya_text = this.add.sprite(1920 - 370, 730, "charactersChoose" ,"musya_text")
-    this.add.sprite(1920 - 370, 910, "charactersChoose" ,"musya_button")
+    this.musya_button = this.add.sprite(1920 - 370, 910, "musya_button")
     .setInteractive()
     .on("pointerdown", () => {
       this.scene.start("Game", {
@@ -104,6 +107,7 @@ export default class StartScene extends Phaser.Scene {
       function (pointer, x, y, event) {
         this.musya_capture.scale = 1.2;
         this.musya_text.angle = 5
+        this.musya_button.setTexture("musya_button_hover")
       }.bind(this)
     )
     .on(
@@ -111,7 +115,7 @@ export default class StartScene extends Phaser.Scene {
       function (pointer, x, y, event) {
         this.musya_capture.scale = 1;
         this.musya_text.angle = 0
-
+        this.musya_button.setTexture("musya_button")
       }.bind(this)
     );
   }

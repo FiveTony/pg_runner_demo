@@ -10,7 +10,7 @@ import UI_elements from "../classes/UI_elements";
 const WIDTH = 1920
 const HEIGHT = 1080
 
-const GAME_VELOCITY = 4
+const GAME_VELOCITY = 4.5
 
 const SCORE_SPOT = 3
 const SCORE_COIN = 1
