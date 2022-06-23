@@ -44,6 +44,7 @@ export default class Positive extends Phaser.Physics.Arcade.Group {
                 // this.createPositiveObject()
             }
         }, this)
+        
     }
     createFirstElements() {
         let data_1 = DATA[0]
@@ -105,6 +106,7 @@ class PositiveObject extends Phaser.GameObjects.Sprite {
     }
     init() {
         this.scene.events.on('update', this.update, this)
+        this.scene.events.on('start', this.move, this)
     }
     update(timestep, dt) {
         if (this.y > 1200 && this.alive_status){

@@ -17,6 +17,7 @@ export default class Room extends Phaser.GameObjects.Sprite {
     init() {
         this.scene.add.existing(this)
         this.scene.events.on('update', this.update, this)
+        this.scene.events.on('start', this.move, this)
     }
     update(timestep, dt) {
         if (this.y > BG_HEIGHT - 1 + HEIGHT && (!this.destroy_flag)) {

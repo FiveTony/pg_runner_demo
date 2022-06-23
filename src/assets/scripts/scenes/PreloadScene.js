@@ -37,6 +37,8 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.image("dima_button", "src/assets/sprites/2version/StartScene/dima_button.png");
     this.load.image("musya_button", "src/assets/sprites/2version/StartScene/musya_button.png");
 
+    this.load.image("start", "src/assets/sprites/2version/StartScene/start.png");
+
 
     this.load.image("musicOn", "src/assets/sprites/2version/musicOn.png");
     this.load.image("musicOff", "src/assets/sprites/2version/musicOff.png");

@@ -36,9 +36,10 @@ export default class GameScene extends Phaser.Scene {
     this.prompt5_flag = true
 
     this.count_created_scenes = 0
+
   }
   create() {
-    this.game_velocity = GAME_VELOCITY
+    this.game_velocity = 0
     let rooms = new Rooms(this)
 
     this.player = new Player(
@@ -50,6 +51,18 @@ export default class GameScene extends Phaser.Scene {
       `player_${this.hero}_1`,
       {"playerScale": 0.7, hero: this.hero}
     )
+
+    this.start_button = this.add.sprite(WIDTH / 2, HEIGHT / 2 + 100, "start")
+      .setInteractive()
+      .on("pointerdown", ()=> {
+        console.log("START")
+        this.player.play("player_animation");
+        this.createTouch()
+        this.game_velocity = GAME_VELOCITY
+        this.events.emit("start")
+        this.start_button.destroy()
+      })
+
 
     this.left_element = this.add.tileSprite(0, 0, 510, HEIGHT, "left_element").setOrigin(0);
     this.right_element = this.add.tileSprite(WIDTH - 510, 0, 0, HEIGHT, "right_element").setOrigin(0);
@@ -67,11 +80,14 @@ export default class GameScene extends Phaser.Scene {
     // this.createMusic()
     this.onMusic()
 
-    this.createTouch()
+    // this.createTouch()
   }
   update(timestep, dt) {
     this.left_element.tilePositionY -= this.game_velocity
     this.right_element.tilePositionY -= this.game_velocity
+  }
+  start() {
+
   }
   addOverlap() {
     this.physics.add.overlap(

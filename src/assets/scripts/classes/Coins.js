@@ -115,10 +115,12 @@ class Coin extends Phaser.GameObjects.Sprite {
         this.scene.physics.add.existing(this)
         this.body.enable = true
         this.alive_status = true
+        // this.myRotate = 0.5
         this.init()
     }
     init() {
         this.scene.events.on('update', this.update, this)
+        this.scene.events.on('start', this.move, this)
     }
     update(timestep, dt) {
         if (this.y > 1200 && this.alive_status){
@@ -137,14 +139,10 @@ class Coin extends Phaser.GameObjects.Sprite {
         this.x = x
         this.y = y
         this.setTexture(sprite)
-        this.setAlive(true)
-
-        // this.scene.children.bringToTop(this)
-        
+        this.setAlive(true)        
     }
     move() {
         this.velocityY = this.scene.game_velocity
         this.myRotate = 0.5
     }
-
 }

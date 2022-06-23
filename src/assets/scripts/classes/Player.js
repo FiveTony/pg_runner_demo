@@ -28,23 +28,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
   createControlKeyboard() {
     this.scene.input.keyboard.on('keydown-LEFT', function(event) {
       this.leftMove()
-      // if (this.direction === 0) {
-      //   this.x = LEFT
-      //   this.direction = -1
-      // } else if (this.direction === 1) {
-      //   this.x = CENTER
-      //   this.direction = 0
-      // }
     },this);
     this.scene.input.keyboard.on('keydown-RIGHT', function(event) {
       this.rightMove()
-      // if (this.direction === 0) {
-      //   this.x = RIGHT
-      //   this.direction = 1
-      // } else if (this.direction === -1) {
-      //   this.x = CENTER
-      //   this.direction = 0
-      // }
     },this);
   }
   setAnimation() {
@@ -57,11 +43,11 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.anims.create({
       key: "player_animation",
       frames: frames, // массив фреймов
-      frameRate: 1.7, // кадров в сек
+      frameRate: 1.5, // кадров в сек
       repeat: -1,
     });
 
-    this.play("player_animation");
+    // this.play("player_animation");
     // this.player1.anims.pause();
   }
   leftMove() {

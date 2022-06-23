@@ -107,6 +107,7 @@ class Spot extends Phaser.GameObjects.Sprite {
         // this.scene.children.moveDown(this)
         this.alive_status = true
         // this.scene.children.bringToTop(this)
+        this.scene.events.on('start', this.move, this)
     }
     init() {
         this.scene.events.on('update', this.update, this)
@@ -133,6 +134,7 @@ class Spot extends Phaser.GameObjects.Sprite {
         
     }
     move() {
+        console.log("MOVE")
         this.velocityY = this.scene.game_velocity
     }
 }
