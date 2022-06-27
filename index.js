@@ -1,16 +1,16 @@
-// import Phaser from "phaser";
-import Phaser from "./phaser-custom";
+import Phaser from "phaser";
+// import Phaser from "./phaser-custom";
 
 import BootScene from "./src/assets/scripts/scenes/BootScene";
 import PreloadScene from "./src/assets/scripts/scenes/PreloadScene";
-import StartScene from "./src/assets/scripts/scenes/StartScene";
-import GameScene from "./src/assets/scripts/scenes/GameScene";
+// import StartScene from "./src/assets/scripts/scenes/StartScene";
+// import GameScene from "./src/assets/scripts/scenes/GameScene";
 
 var scenes = [
   BootScene,
   PreloadScene,
-  StartScene,
-  GameScene,
+  // StartScene,
+  // GameScene,
 ];
 
 var config = {
@@ -22,6 +22,10 @@ var config = {
     mode: Phaser.Scale.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,
   },
+
+  // multiTexture: true,
+  enableDebug: false,
+  
   physics: {
     default: "arcade",
     arcade: {
@@ -55,6 +59,7 @@ var config = {
     panicMax: 600,
     smoothStep: true,
   },
+  parent: "game", // чтобы игра была внутри div
 };
 
 // var game = new Phaser.Game(config);

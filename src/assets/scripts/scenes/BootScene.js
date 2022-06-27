@@ -9,6 +9,9 @@ export default class BootScene extends Phaser.Scene {
     this.load.image("circle", "src/assets/sprites/2version/PreloadScene/circle.png");
     this.load.image("pg_label", "src/assets/sprites/2version/PreloadScene/pg_label.png");
     this.load.image("pattern", "src/assets/sprites/2version/PreloadScene/pattern.png");
+    
+    this.load.audio("main_theme", "src/assets/sounds/main_theme.mp3");
+
   }
   create() {
     this.scene.start("Preload");

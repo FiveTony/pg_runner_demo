@@ -33,9 +33,11 @@ export default class Rooms extends Phaser.Physics.Arcade.Group {
     createSecondRoom() {
         let second_room = this.getFirstDead()
         if (!second_room) {
+            console.log("!second_room")
             second_room = new Room(this.scene, WIDTH / 2 + BG_WIDTH / 2, 0, "room2")
             this.add(second_room)
         } else {
+            console.log("reset()")
             let room_sprite
             if (this.scene.room_num === 5) {
                 room_sprite = "room5"

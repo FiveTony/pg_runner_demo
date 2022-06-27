@@ -8,16 +8,16 @@ export default class Room extends Phaser.GameObjects.Sprite {
     constructor(scene,x,y,texture) {
         super(scene, x, y, texture)
         this.init()
-        this.setOrigin(1)
-
-        this.leave_flag = false
-        this.destroy_flag = false
         this.scene.children.sendToBack(this)
     }
     init() {
+        this.setOrigin(1)
+    
+        this.leave_flag = false
+        this.destroy_flag = false
         this.scene.add.existing(this)
         this.scene.events.on('update', this.update, this)
-        this.scene.events.on('start', this.move, this)
+        this.scene.events.on('start_game', this.move, this)
     }
     update(timestep, dt) {
         if (this.y > BG_HEIGHT - 1 + HEIGHT && (!this.destroy_flag)) {
@@ -44,12 +44,7 @@ export default class Room extends Phaser.GameObjects.Sprite {
         this.scene.children.sendToBack(this)
     }
     move() {
+        // console.log(this.scene)
         this.velocityY = this.scene.game_velocity
-    }
-    isDead() {
-        return this.y > BG_HEIGHT - 1
-    }
-    isLeave() {
-        return this.y > BG_HEIGHT - 1 - HEIGHT
     }
 }

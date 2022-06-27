@@ -6,11 +6,12 @@ import Positive from "../classes/Positive";
 import Rooms from "../classes/Rooms";
 import Spots from "../classes/Spots";
 import UI_elements from "../classes/UI_elements";
+import StartScene from "./StartScene";
 
 const WIDTH = 1920
 const HEIGHT = 1080
 
-const GAME_VELOCITY = 4.5
+const GAME_VELOCITY = 5
 
 const SCORE_SPOT = 3
 const SCORE_COIN = 1
@@ -37,31 +38,43 @@ export default class GameScene extends Phaser.Scene {
 
     this.count_created_scenes = 0
 
+    this.play_num = 1
+
   }
   create() {
+    // this.game.clearBeforeRender = false;
+    console.log(this.game)
     this.game_velocity = 0
+    
     let rooms = new Rooms(this)
 
     this.player = new Player(
       this,
       WIDTH / 2,
       HEIGHT / 2 + 300,
-      //  this.game.config.width / 2,
-      // this.game.config.height / 2 + 300,
       `player_${this.hero}_1`,
       {"playerScale": 0.7, hero: this.hero}
     )
 
-    this.start_button = this.add.sprite(WIDTH / 2, HEIGHT / 2 + 100, "start")
-      .setInteractive()
-      .on("pointerdown", ()=> {
-        console.log("START")
-        this.player.play("player_animation");
-        this.createTouch()
-        this.game_velocity = GAME_VELOCITY
-        this.events.emit("start")
-        this.start_button.destroy()
-      })
+    if (this.play_num === 1) {
+      this.start_button = this.add.sprite(WIDTH / 2, HEIGHT / 2 + 100, "ui_spritesheet", "start")
+        .setInteractive()
+        .once("pointerdown", ()=> {
+          this.player.play("player_animation");
+          this.createTouch()
+          this.game_velocity = GAME_VELOCITY
+          this.events.emit("start_game")
+          this.events.removeListener("start_game")
+          this.start_button.destroy()
+          this.play_num++
+        })
+    } else {
+      this.player.play("player_animation");
+      this.createTouch()
+      this.game_velocity = GAME_VELOCITY
+      this.events.emit("start_game")
+      this.events.removeListener("start_game")
+    }
 
 
     this.left_element = this.add.tileSprite(0, 0, 510, HEIGHT, "left_element").setOrigin(0);
@@ -85,9 +98,6 @@ export default class GameScene extends Phaser.Scene {
   update(timestep, dt) {
     this.left_element.tilePositionY -= this.game_velocity
     this.right_element.tilePositionY -= this.game_velocity
-  }
-  start() {
-
   }
   addOverlap() {
     this.physics.add.overlap(
@@ -165,7 +175,7 @@ export default class GameScene extends Phaser.Scene {
         ease: "Power2",
         duration: 450,
         onComplete: () => {
-          this.ui.heart_1.setTexture('not_hp')
+          this.ui.heart_1.setFrame('not_hp')
           this.ui.heart_1.alpha = 1
           this.ui.heart_1.scale = 1
         },
@@ -188,7 +198,7 @@ export default class GameScene extends Phaser.Scene {
         ease: "Power2",
         duration: 450,
         onComplete: () => {
-          this.ui.heart_2.setTexture('not_hp')
+          this.ui.heart_2.setFrame('not_hp')
           this.ui.heart_2.alpha = 1
           this.ui.heart_2.scale = 1
         },
@@ -210,13 +220,40 @@ export default class GameScene extends Phaser.Scene {
         ease: "Power2",
         duration: 450,
         onComplete: () => {
-          this.ui.heart_3.setTexture('not_hp')
-          this.ui.heart_3.alpha = 1
-          this.ui.heart_3.scale = 1
+          this.ui.heart_3.setFrame('not_hp')
+          // this.ui.heart_3.alpha = 1
+          // this.ui.heart_3.scale = 1
+
+          this.game.scene.add('Start', StartScene, true);
+
+          // this.scene.start("Start")
+          this.scene.remove("Game")
         },
       });
       this.hearts--
+
+      // this.scene.wake("Start")
+      // this.scene.remove("Game")
+      // this.scene.sleep("Game")
+
+      // this.scene.switch("Start");
+      // this.events.removeAllListeners("update")
+      // this.events.removeAllListeners("leave")
+      // console.log(this.play_num)
+      // this.scene.start("Game", {hero:"dima", play_num: this.play_num})
+      // this.scene.start("Start")
+      // this.scene.remove("Game")
+
+      // console.log( this.scene.manager.processQueue())
+      
+      
+      // this.events.removeAllListeners()
+      // console.log(this.scene.manager.getScenes(false))
       // this.ui.heart_3.setTexture('not_hp')
+
+
+
+
       // this.scene.stop()
       // this.scene.start("Game")
     }  
@@ -310,8 +347,8 @@ export default class GameScene extends Phaser.Scene {
     this.ui.score_text.setText(`${this.score}`);
   }
   muteMusic() { 
-    if (this.mute) this.scene.get("Start").main_theme.pause();
-    else this.scene.get("Start").main_theme.resume();
+    // if (this.mute) this.scene.get("Start").main_theme.pause();
+    // else this.scene.get("Start").main_theme.resume();
   }
   createSounds() {
     this.get_positive = this.sound.add("get_positive", {
@@ -367,11 +404,11 @@ export default class GameScene extends Phaser.Scene {
       // console.log("SCENES ", this.scene.manager.scenes)
       // console.log(this.children.getAll())
       if (this.mute == false) {
-        this.ui.sound.setTexture("musicOff");
+        this.ui.sound.setFrame("musicOff");
         this.mute = true;
         this.muteMusic();
       } else {
-        this.ui.sound.setTexture("musicOn");
+        this.ui.sound.setFrame("musicOn");
         this.mute = false;
         this.muteMusic();
       }
@@ -391,7 +428,7 @@ export default class GameScene extends Phaser.Scene {
     right.on("pointerdown",()=>this.player.rightMove())
   }
   createPrompt(num, x, y) {
-    let prompt = this.add.sprite(x, y, `prompt${num}`)
+    let prompt = this.add.sprite(x, y, "prompts_spritesheet", `prompt${num}`)
     this.tweens.add({
       targets: prompt,
       alpha: {

@@ -1,6 +1,8 @@
 const WIDTH = 1920
 const HEIGHT = 1080
 
+import GameScene from "./GameScene";
+
 export default class StartScene extends Phaser.Scene {
   constructor() {
     super("Start");
@@ -9,18 +11,6 @@ export default class StartScene extends Phaser.Scene {
   create() {
     this.createBackground();
     this.createCharacters()
-    // this.createMusic()
-    this.main_theme = this.sound.add("main_theme", {
-      mute: false,
-      volume: 0.2,
-      rate: 1,
-      detune: 0,
-      seek: 0,
-      loop: true,
-      delay: 0,
-    });
-    this.main_theme.play();
-
   }
   createBackground() {
     this.add.graphics(0, 0, WIDTH, HEIGHT)
@@ -43,9 +33,11 @@ export default class StartScene extends Phaser.Scene {
     this.rita_button = this.add.sprite(370, 910, "rita_button")
       .setInteractive()
       .on("pointerdown", () => {
-        this.scene.start("Game", {
-          hero: "rita"
+        this.game.scene.add('Game', GameScene, true, {
+          hero: "rita", 
+          play_num: 1
         });
+        this.scene.remove("Start")
       })
       .on(
         "pointermove",
@@ -71,9 +63,11 @@ export default class StartScene extends Phaser.Scene {
     this.dima_button = this.add.sprite(1920 / 2, 910,"dima_button")
       .setInteractive()
       .on("pointerdown", () => {
-        this.scene.start("Game", {
-          hero: "dima"
+        this.game.scene.add('Game', GameScene, true, {
+          hero: "dima", 
+          play_num: 1
         });
+        this.scene.remove("Start")
       })
       .on(
         "pointermove",
@@ -98,10 +92,12 @@ export default class StartScene extends Phaser.Scene {
     this.musya_button = this.add.sprite(1920 - 370, 910, "musya_button")
     .setInteractive()
     .on("pointerdown", () => {
-      this.scene.start("Game", {
-        hero: "musya"
-      });
-    })
+        this.game.scene.add('Game', GameScene, true, {
+          hero: "musya", 
+          play_num: 1
+        });
+        this.scene.remove("Start")
+      })
     .on(
       "pointermove",
       function (pointer, x, y, event) {
@@ -131,5 +127,4 @@ export default class StartScene extends Phaser.Scene {
     });
     this.main_theme.play();
   }
-
 }
