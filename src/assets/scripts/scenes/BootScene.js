@@ -11,6 +11,7 @@ export default class BootScene extends Phaser.Scene {
     this.load.image("pattern", "src/assets/sprites/2version/PreloadScene/pattern.png");
     
     this.load.audio("main_theme", "src/assets/sounds/main_theme.mp3");
+    this.load.bitmapFont('Monserrat-Bold', 'src/assets/fonts/test.png', 'src/assets/fonts/test.xml');
 
   }
   create() {

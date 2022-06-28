@@ -107,6 +107,7 @@ class PositiveObject extends Phaser.GameObjects.Sprite {
         this.setScale(0.6)
         this.scene.events.on('update', this.update, this)
         this.scene.events.on('start_game', this.move, this)
+        this.scene.events.on('leave', this.move, this)
     }
     update(timestep, dt) {
         if (this.y > 1200 && this.alive_status){

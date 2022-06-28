@@ -11,7 +11,8 @@ import StartScene from "./StartScene";
 const WIDTH = 1920
 const HEIGHT = 1080
 
-const GAME_VELOCITY = 5
+const GAME_VELOCITY_START = 5
+const GAME_VELOCITY_STEP = 0.2
 
 const SCORE_SPOT = 3
 const SCORE_COIN = 1
@@ -43,7 +44,6 @@ export default class GameScene extends Phaser.Scene {
   }
   create() {
     // this.game.clearBeforeRender = false;
-    console.log(this.game)
     this.game_velocity = 0
     
     let rooms = new Rooms(this)
@@ -56,25 +56,25 @@ export default class GameScene extends Phaser.Scene {
       {"playerScale": 0.7, hero: this.hero}
     )
 
-    if (this.play_num === 1) {
+    // if (this.play_num === 1) {
       this.start_button = this.add.sprite(WIDTH / 2, HEIGHT / 2 + 100, "ui_spritesheet", "start")
         .setInteractive()
         .once("pointerdown", ()=> {
           this.player.play("player_animation");
           this.createTouch()
-          this.game_velocity = GAME_VELOCITY
+          this.game_velocity = GAME_VELOCITY_START
           this.events.emit("start_game")
           this.events.removeListener("start_game")
           this.start_button.destroy()
           this.play_num++
         })
-    } else {
-      this.player.play("player_animation");
-      this.createTouch()
-      this.game_velocity = GAME_VELOCITY
-      this.events.emit("start_game")
-      this.events.removeListener("start_game")
-    }
+    // } else {
+    //   this.player.play("player_animation");
+    //   this.createTouch()
+    //   this.game_velocity = GAME_VELOCITY_START
+    //   this.events.emit("start_game")
+    //   this.events.removeListener("start_game")
+    // }
 
 
     this.left_element = this.add.tileSprite(0, 0, 510, HEIGHT, "left_element").setOrigin(0);
@@ -347,8 +347,8 @@ export default class GameScene extends Phaser.Scene {
     this.ui.score_text.setText(`${this.score}`);
   }
   muteMusic() { 
-    // if (this.mute) this.scene.get("Start").main_theme.pause();
-    // else this.scene.get("Start").main_theme.resume();
+    if (this.mute) this.scene.get("Preload").main_theme.pause();
+    else this.scene.get("Preload").main_theme.resume();
   }
   createSounds() {
     this.get_positive = this.sound.add("get_positive", {

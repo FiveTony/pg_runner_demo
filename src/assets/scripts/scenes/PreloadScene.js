@@ -39,7 +39,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio("win", "src/assets/sounds/win.mp3");
 
 
-    this.load.bitmapFont('Monserrat-Bold', 'src/assets/fonts/test.png', 'src/assets/fonts/test.xml');
+    // this.load.bitmapFont('Monserrat-Bold', 'src/assets/fonts/test.png', 'src/assets/fonts/test.xml');
 
     
     
@@ -109,11 +109,11 @@ export default class PreloadScene extends Phaser.Scene {
 
   }
   preloadRooms() {
-    this.load.image("room1", "src/assets/sprites/2version/rooms/room1.jpg");
-    this.load.image("room2", "src/assets/sprites/2version/rooms/room2.jpg");
-    this.load.image("room3", "src/assets/sprites/2version/rooms/room3.jpg");
-    this.load.image("room4", "src/assets/sprites/2version/rooms/room4.jpg");
-    this.load.image("room5", "src/assets/sprites/2version/rooms/room5.jpg");
+    this.load.image("room1", "src/assets/sprites/2version/rooms/room1.png");
+    this.load.image("room2", "src/assets/sprites/2version/rooms/room2.png");
+    this.load.image("room3", "src/assets/sprites/2version/rooms/room3.png");
+    this.load.image("room4", "src/assets/sprites/2version/rooms/room4.png");
+    this.load.image("room5", "src/assets/sprites/2version/rooms/room5.png");
 
     // this.load.atlas(
     //   "rooms", "src/assets/sprites/2version/rooms/rooms_spritesheet.png", 

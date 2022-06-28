@@ -112,6 +112,7 @@ class Spot extends Phaser.GameObjects.Sprite {
         // this.scene.children.bringToTop(this)
         this.scene.events.on('update', this.update, this)
         this.scene.events.on('start_game', this.move, this)
+        this.scene.events.on('leave', this.move, this)
         // console.log("init()",this)
     }
     update(timestep, dt) {

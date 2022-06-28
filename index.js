@@ -62,17 +62,17 @@ var config = {
   parent: "game", // чтобы игра была внутри div
 };
 
-// var game = new Phaser.Game(config);
+var game = new Phaser.Game(config);
 
 
-var WebFont = require("webfontloader");
-WebFont.load({
-  custom: {
-    families: ["Monserrat-Bold, Monserrat-Medium"],
-    urls: ["src/assets/styles/fonts.css"],
-  },
-  active: function () {
-    console.log("FONTS")
-    var game = new Phaser.Game(config);
-  },
-});
+// var WebFont = require("webfontloader");
+// WebFont.load({
+//   custom: {
+//     families: ["Monserrat-Bold, Monserrat-Medium"],
+//     urls: ["src/assets/styles/fonts.css"],
+//   },
+//   active: function () {
+//     console.log("FONTS")
+//     var game = new Phaser.Game(config);
+//   },
+// });

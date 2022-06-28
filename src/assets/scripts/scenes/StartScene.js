@@ -25,6 +25,7 @@ export default class StartScene extends Phaser.Scene {
       lineSpacing: 20,
 
   }).setOrigin(0.5)
+
   }
   createCharacters() {
     this.add.sprite(375, 240, "charactersChoose" ,"rita_label")
