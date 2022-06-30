@@ -9,8 +9,8 @@ export default class Borders extends Phaser.Physics.Arcade.Group {
         super(scene.physics.world, scene)
         this.scene = scene
 
-        this.left_x = WIDTH / 2 - 268
-        this.right_x = WIDTH / 2 + 268
+        this.left_x = WIDTH / 2 - 102
+        this.right_x = WIDTH / 2 + 102
 
         this.count_created = 0
 
@@ -26,11 +26,11 @@ export default class Borders extends Phaser.Physics.Arcade.Group {
     }
     createFirstBorders() {
         // let data_1 = DATA[0]
-        let elem_1 = new Border(this.scene, this.left_x, -BG_HEIGHT + HEIGHT + 25, 'border')
+        let elem_1 = new Border(this.scene, this.left_x, -BG_HEIGHT + HEIGHT + 10, "negative_spritesheet", 'border')
         elem_1.move()
         this.add(elem_1)
         // let data_2 = DATA[0]
-        let elem_2 = new Border(this.scene, this.right_x, -BG_HEIGHT + HEIGHT + 25, 'border')
+        let elem_2 = new Border(this.scene, this.right_x, -BG_HEIGHT + HEIGHT + 10, "negative_spritesheet", 'border')
         elem_2.move()
         this.add(elem_2)
         // let data_3 = DATA[0]
@@ -45,15 +45,15 @@ export default class Borders extends Phaser.Physics.Arcade.Group {
     }
     createBorder(x) {
         let elem = this.getFirstDead()
-        elem.reset(x, -27)
+        elem.reset(x, -10)
         elem.move()
         this.count_created++
     }
 }
 
 class Border extends Phaser.GameObjects.Sprite {
-    constructor(scene, x, y, texture) {
-        super(scene, x, y, texture)
+    constructor(scene, x, y, texture, frame) {
+        super(scene, x, y, texture, frame)
         this.init()
     }
     init() {

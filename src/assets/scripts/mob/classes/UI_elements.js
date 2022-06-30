@@ -16,18 +16,18 @@ export default class UI_elements {
         this.createSoundButtons()
     }
     createStats() {
-        this.scene.add.sprite(678, 69, "ui_spritesheet", 'score_rectangle')
-        this.scene.add.sprite(622, 68, "ui_spritesheet", 'score_coin')
+        this.scene.add.sprite(85, 40, "ui_spritesheet", 'score_rectangle')
+        this.scene.add.sprite(46, 40, "ui_spritesheet", 'score_coin')
         // this.score_text = this.scene.add.text(690, 42, `${this.score}`, TEXT_STYLE)
-        this.score_text = this.scene.add.bitmapText(690, 42, 'Montserrat-Bold', `${this.score}`, 50)
+        this.score_text = this.scene.add.bitmapText(90, 22, 'Montserrat-Bold', `${this.score}`, 30)
     }
     createHearts() {
-        this.heart_1 = this.scene.add.sprite(1126, 66, "ui_spritesheet", 'hp')
-        this.heart_2 = this.scene.add.sprite(1216, 66, "ui_spritesheet", 'hp')
-        this.heart_3 = this.scene.add.sprite(1308, 66, "ui_spritesheet", 'hp')
+        this.heart_1 = this.scene.add.sprite(225, 40, "ui_spritesheet", 'hp')
+        this.heart_2 = this.scene.add.sprite(280, 40, "ui_spritesheet", 'hp')
+        this.heart_3 = this.scene.add.sprite(335, 40, "ui_spritesheet", 'hp')
     }
     createSoundButtons() {
-        this.sound = this.scene.add.sprite(WIDTH - 110, 66, "ui_spritesheet", 'musicOn').setInteractive()
+        this.sound = this.scene.add.sprite(455, 40, "ui_spritesheet", 'musicOn').setInteractive()
     }
 
 }

@@ -43,30 +43,27 @@ export default class GameScene extends Phaser.Scene {
 
   }
   create() {
-    // this.game.clearBeforeRender = false;
     this.game_velocity = 0
     
     let rooms = new Rooms(this)
 
-    
-    
     this.player = new Player(
       this,
       WIDTH / 2,
       HEIGHT / 2 + 300,
       `player_${this.hero}_1`,
-      {"playerScale": 0.5, hero: this.hero}
+      {"playerScale": 1, hero: this.hero}
       )
       
-      this.game_velocity = GAME_VELOCITY_START
-      this.events.emit("start_game") //!!
+      // this.game_velocity = GAME_VELOCITY_START
+      // this.events.emit("start_game") //!!
       // this.start_button = this.add.sprite(WIDTH / 2, HEIGHT / 2 + 100, "ui_spritesheet", "start")
       //   .setInteractive()
       //   .once("pointerdown", ()=> {
       //     this.player.play("player_animation");
-      //     this.createTouch()
-      //     this.game_velocity = GAME_VELOCITY_START
-      //     this.events.emit("start_game")
+          this.createTouch()
+          this.game_velocity = GAME_VELOCITY_START
+          this.events.emit("start_game")
       //     this.events.removeListener("start_game")
       //     this.start_button.destroy()
       //     this.play_num++
@@ -82,10 +79,10 @@ export default class GameScene extends Phaser.Scene {
     this.spots = new Spots(this)
     this.coins = new Coins(this)
 
-    // this.ui = new UI_elements(this, 0, 3)
+    this.ui = new UI_elements(this, 0, 3)
 
-    // this.createSounds()
-    // this.addOverlap()
+    this.createSounds()
+    this.addOverlap()
     // this.onMusic()
   }
   update(timestep, dt) {
@@ -100,29 +97,30 @@ export default class GameScene extends Phaser.Scene {
       undefined,
       this
     );
-    this.physics.add.overlap(
-      this.positive,
-      this.player,
-      this.onPositiveOverlap,
-      undefined,
-      this
-    );
-    this.physics.add.overlap(
-      this.coins,
-      this.player,
-      this.onCoinsOverlap,
-      undefined,
-      this
-    );
-    this.physics.add.overlap(
-      this.spots,
-      this.player,
-      this.onSpotsOverlap,
-      undefined,
-      this
-    );
+    // this.physics.add.overlap(
+    //   this.positive,
+    //   this.player,
+    //   this.onPositiveOverlap,
+    //   undefined,
+    //   this
+    // );
+    // this.physics.add.overlap(
+    //   this.coins,
+    //   this.player,
+    //   this.onCoinsOverlap,
+    //   undefined,
+    //   this
+    // );
+    // this.physics.add.overlap(
+    //   this.spots,
+    //   this.player,
+    //   this.onSpotsOverlap,
+    //   undefined,
+    //   this
+    // );
   }
   onNegativeOverlap(source, target) { // source - игрок
+    console.log("NEGATIVE OVERLAP")
     target.body.enable = false
     this.cameras.main.shake(500, 0.005)
     if (!this.mute) {
@@ -140,6 +138,7 @@ export default class GameScene extends Phaser.Scene {
         source.alpha = 1;
       },
     });
+
     this.tweens.add({
       targets: target,
       alpha: {
@@ -154,72 +153,72 @@ export default class GameScene extends Phaser.Scene {
       },
     });
 
-    if (this.hearts === 3){ 
-      this.tweens.add({
-        targets: this.ui.heart_1,
-        scale: {
-          from: 1,
-          to: 2
-        },
-        alpha: {
-          from: 1,
-          to: 0
-        },
-        ease: "Power2",
-        duration: 450,
-        onComplete: () => {
-          this.ui.heart_1.setFrame('not_hp')
-          this.ui.heart_1.alpha = 1
-          this.ui.heart_1.scale = 1
-        },
-      });
+  //   if (this.hearts === 3){ 
+  //     this.tweens.add({
+  //       targets: this.ui.heart_1,
+  //       scale: {
+  //         from: 1,
+  //         to: 2
+  //       },
+  //       alpha: {
+  //         from: 1,
+  //         to: 0
+  //       },
+  //       ease: "Power2",
+  //       duration: 450,
+  //       onComplete: () => {
+  //         this.ui.heart_1.setFrame('not_hp')
+  //         this.ui.heart_1.alpha = 1
+  //         this.ui.heart_1.scale = 1
+  //       },
+  //     });
 
-      this.hearts--
-    }
-    else if (this.hearts === 2) {
-      this.tweens.add({
-        targets: this.ui.heart_2,
-        scale: {
-          from: 1,
-          to: 2
-        },
-        alpha: {
-          from: 1,
-          to: 0
-        },
-        ease: "Power2",
-        duration: 450,
-        onComplete: () => {
-          this.ui.heart_2.setFrame('not_hp')
-          this.ui.heart_2.alpha = 1
-          this.ui.heart_2.scale = 1
-        },
-      });
-      this.hearts--
-  }
-    else if (this.hearts === 1) {
-      this.tweens.add({
-        targets: this.ui.heart_3,
-        scale: {
-          from: 1,
-          to: 2
-        },
-        alpha: {
-          from: 1,
-          to: 0
-        },
-        ease: "Power2",
-        duration: 450,
-        onComplete: () => {
-          this.ui.heart_3.setFrame('not_hp')
+  //     this.hearts--
+  //   }
+  //   else if (this.hearts === 2) {
+  //     this.tweens.add({
+  //       targets: this.ui.heart_2,
+  //       scale: {
+  //         from: 1,
+  //         to: 2
+  //       },
+  //       alpha: {
+  //         from: 1,
+  //         to: 0
+  //       },
+  //       ease: "Power2",
+  //       duration: 450,
+  //       onComplete: () => {
+  //         this.ui.heart_2.setFrame('not_hp')
+  //         this.ui.heart_2.alpha = 1
+  //         this.ui.heart_2.scale = 1
+  //       },
+  //     });
+  //     this.hearts--
+  // }
+  //   else if (this.hearts === 1) {
+  //     this.tweens.add({
+  //       targets: this.ui.heart_3,
+  //       scale: {
+  //         from: 1,
+  //         to: 2
+  //       },
+  //       alpha: {
+  //         from: 1,
+  //         to: 0
+  //       },
+  //       ease: "Power2",
+  //       duration: 450,
+  //       onComplete: () => {
+  //         this.ui.heart_3.setFrame('not_hp')
 
-          this.game.scene.add('Start', StartScene, true);
+  //         this.game.scene.add('Start', StartScene, true);
 
-          this.scene.remove("Game")
-        },
-      });
-      this.hearts--
-    }  
+  //         this.scene.remove("Game")
+  //       },
+  //     });
+  //     this.hearts--
+  //   }  
   }
   onPositiveOverlap(source, target) {
     if (!this.mute) this.get_positive.play()

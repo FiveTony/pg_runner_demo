@@ -22,7 +22,7 @@ import PreloadSceneDesk from "./src/assets/scripts/desk/scenes/PreloadScene";
 console.log("device.mobile(): ", device.mobile(), "device.desktop(): ", device.desktop())
 
 // const mobile = device.mobile()
-const mobile = false
+const mobile = true
 
 if (mobile) {
   console.log("mobile")
@@ -32,7 +32,7 @@ if (mobile) {
   ];
   
   var config = {
-    type: Phaser.AUTO,
+    type: Phaser.WEBGL,
     width: 500,
     height: 800,
     scene: scenes,

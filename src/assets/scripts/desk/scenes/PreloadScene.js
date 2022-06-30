@@ -40,6 +40,10 @@ export default class PreloadScene extends Phaser.Scene {
       "ui_spritesheet", "src/assets/sprites/desk/ui/ui_spritesheet.png", 
       "src/assets/sprites/desk/ui/ui_spritesheet.json");
 
+    this.load.image("start", "src/assets/sprites/desk/button.png");
+    this.load.image("start_hover", "src/assets/sprites/desk/button_blue.png");
+
+
     this.load.atlas(
       "prompts_spritesheet", "src/assets/sprites/desk/prompts_spritesheet.png", 
       "src/assets/sprites/desk/prompts_spritesheet.json");
@@ -106,7 +110,7 @@ export default class PreloadScene extends Phaser.Scene {
       "src/assets/sprites/desk/positive/positive_spritesheet.json");
   }
   createElements() {
-    let preload_graphics = this.add.graphics()
+  let preload_graphics = this.add.graphics()
     .fillGradientStyle(0x062A67,0x062A67,0x1A499B, 0x1A499B, 1)
     .fillRect(0, 0, WIDTH, HEIGHT);
 

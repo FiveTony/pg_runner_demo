@@ -12,7 +12,7 @@ const WIDTH = 1920
 const HEIGHT = 1080
 
 const GAME_VELOCITY_START = 5
-const GAME_VELOCITY_STEP = 0.2
+const GAME_VELOCITY_STEP = 0.6
 
 const SCORE_SPOT = 3
 const SCORE_COIN = 1
@@ -56,7 +56,7 @@ export default class GameScene extends Phaser.Scene {
       {"playerScale": 0.7, hero: this.hero}
     )
 
-      this.start_button = this.add.sprite(WIDTH / 2, HEIGHT / 2 + 100, "ui_spritesheet", "start")
+      this.start_button = this.add.sprite(WIDTH / 2, HEIGHT / 2 + 100, "start_hover")
         .setInteractive()
         .once("pointerdown", ()=> {
           this.player.play("player_animation");
@@ -68,12 +68,14 @@ export default class GameScene extends Phaser.Scene {
           this.play_num++
         })
         .on("pointermove", ()=>{
-          this.start_button.scale = 1.2
-          this.start_button.angle = 10
+          this.start_button.scale = 1.3
+          this.start_button.angle = 5
+          this.start_button.setTexture("start")
         })
         .on("pointerout", ()=>{
           this.start_button.scale = 1
           this.start_button.angle = 0
+          this.start_button.setTexture("start_hover")
         })
 
     this.left_element = this.add.tileSprite(0, 0, 510, HEIGHT, "left_element").setOrigin(0);

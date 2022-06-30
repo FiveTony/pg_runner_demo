@@ -1,6 +1,6 @@
-const LEFT = 700
-const CENTER = 975
-const RIGHT = 1250
+const LEFT = 150
+const CENTER = 250
+const RIGHT = 350
 
 export default class Player extends Phaser.GameObjects.Sprite {
   constructor(scene, x, y, frame, config) {
@@ -23,6 +23,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.createControlKeyboard()
 
     this.setAnimation();
+    console.log(this.x)
+
     
   }
   createControlKeyboard() {
@@ -58,6 +60,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.x = CENTER
       this.direction = 0
     }
+    console.log(this.x)
   }
   rightMove() {
     if (this.direction === 0) {
@@ -67,5 +70,7 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.x = CENTER
       this.direction = 0
     }
+        console.log(this.x)
+
   }
 }

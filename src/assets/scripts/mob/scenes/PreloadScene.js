@@ -91,11 +91,17 @@ export default class PreloadScene extends Phaser.Scene {
 
   }
   preloadRooms() {
-    this.load.image("room1", "src/assets/sprites/mob/rooms/room1.png");
-    this.load.image("room2", "src/assets/sprites/mob/rooms/room2.png");
-    this.load.image("room3", "src/assets/sprites/mob/rooms/room3.png");
-    this.load.image("room4", "src/assets/sprites/mob/rooms/room4.png");
-    this.load.image("room5", "src/assets/sprites/mob/rooms/room5.png");
+    // this.load.image("room1", "src/assets/sprites/mob/rooms/room1.png");
+    // this.load.image("room2", "src/assets/sprites/mob/rooms/room2.png");
+    // this.load.image("room3", "src/assets/sprites/mob/rooms/room3.png");
+    // this.load.image("room4", "src/assets/sprites/mob/rooms/room4.png");
+    // this.load.image("room5", "src/assets/sprites/mob/rooms/room5.png");
+
+    this.load.image("room1", "src/assets/sprites/mob/rooms/jpg/room1.jpg");
+    this.load.image("room2", "src/assets/sprites/mob/rooms/jpg/room2.jpg");
+    this.load.image("room3", "src/assets/sprites/mob/rooms/jpg/room3.jpg");
+    this.load.image("room4", "src/assets/sprites/mob/rooms/jpg/room4.jpg");
+    this.load.image("room5", "src/assets/sprites/mob/rooms/jpg/room5.jpg");
 
     // this.load.atlas(
     //   "rooms", "src/assets/sprites/mob/rooms/rooms_spritesheet.png", 

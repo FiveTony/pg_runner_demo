@@ -1,9 +1,9 @@
 const BG_WIDTH = 900
 const BG_HEIGHT = 2880
 
-const X_1 = 100
-const X_2 = 975
-const X_3 = 1250
+const X_1 = 150
+const X_2 = 250
+const X_3 = 350
 
 const DATA = [
     [X_3, -800, 20],

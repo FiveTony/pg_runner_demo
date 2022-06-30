@@ -1,6 +1,6 @@
-const X_1 = 300
-const X_2 = 975
-const X_3 = 1250
+const X_1 = 150
+const X_2 = 250
+const X_3 = 350
 
 const BG_WIDTH = 340
 const BG_HEIGHT = 1100
