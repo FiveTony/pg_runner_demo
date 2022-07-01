@@ -1,0 +1,62 @@
+{
+	"textures": [
+		{
+			"image": "player_musya_spritesheet.png",
+			"format": "RGBA8888",
+			"size": {
+				"w": 61,
+				"h": 184
+			},
+			"scale": 1,
+			"frames": [
+				{
+					"filename": "player_musya_1",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 60,
+						"h": 91
+					},
+					"spriteSourceSize": {
+						"x": 0,
+						"y": 1,
+						"w": 59,
+						"h": 90
+					},
+					"frame": {
+						"x": 1,
+						"y": 1,
+						"w": 59,
+						"h": 90
+					}
+				},
+				{
+					"filename": "player_musya_2",
+					"rotated": false,
+					"trimmed": true,
+					"sourceSize": {
+						"w": 61,
+						"h": 90
+					},
+					"spriteSourceSize": {
+						"x": 1,
+						"y": 0,
+						"w": 59,
+						"h": 90
+					},
+					"frame": {
+						"x": 1,
+						"y": 93,
+						"w": 59,
+						"h": 90
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "3.0",
+		"smartupdate": "$TexturePacker:SmartUpdate:3eb145a31adfb530efb7cf0379feea15:3be10d7819407f92dc41e9ca9d375e0d:a1325e7c629f62e4bb04e522cc40e051$"
+	}
+}
