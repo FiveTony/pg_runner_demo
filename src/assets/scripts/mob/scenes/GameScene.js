@@ -12,7 +12,8 @@ const WIDTH = 500
 const HEIGHT = 800
 
 const GAME_VELOCITY_START = 2
-const GAME_VELOCITY_STEP = 0.2
+
+const SWIPE_POWER = 30
 
 const SCORE_SPOT = 3
 const SCORE_COIN = 1
@@ -41,6 +42,8 @@ export default class GameScene extends Phaser.Scene {
 
     this.play_num = 1
 
+    this.isClicking = false
+
   }
   create() {
     this.game_velocity = 0
@@ -50,24 +53,40 @@ export default class GameScene extends Phaser.Scene {
     this.player = new Player(
       this,
       WIDTH / 2,
-      HEIGHT / 2 + 300,
+      HEIGHT / 2 + 200,
       `player_${this.hero}_1`,
       {"playerScale": 1, hero: this.hero}
       )
       
-      // this.game_velocity = GAME_VELOCITY_START
-      // this.events.emit("start_game") //!!
-      // this.start_button = this.add.sprite(WIDTH / 2, HEIGHT / 2 + 100, "ui_spritesheet", "start")
-      //   .setInteractive()
-      //   .once("pointerdown", ()=> {
-      //     this.player.play("player_animation");
-          this.createTouch()
+      this.start_button = this.add.sprite(WIDTH / 2, HEIGHT / 2 + 350, "ui_spritesheet", "start")
+        .setInteractive()
+        .once("pointerdown", ()=> {
+          this.player.play("player_animation");
           this.game_velocity = GAME_VELOCITY_START
           this.events.emit("start_game")
-      //     this.events.removeListener("start_game")
-      //     this.start_button.destroy()
-      //     this.play_num++
-      //   })
+          this.events.removeListener("start_game")
+          this.start_button.destroy()
+          this.play_num++
+        })
+
+      this.tweens.add({
+        targets: this.start_button,
+        alpha: {
+          from: 1,
+          to: 0.7
+        },
+        angle: {
+          from: -10,
+          to: 10
+        },
+        repeat: -1,
+        ease: "Linear",
+        yoyo: true,
+        duration: 800,
+        onComplete: function () {
+          this.start_button.alpha = 1;
+        },
+      });
 
 
     this.left_element = this.add.tileSprite(0, 0, 80, HEIGHT, "left_element").setOrigin(0)
@@ -83,11 +102,24 @@ export default class GameScene extends Phaser.Scene {
 
     this.createSounds()
     this.addOverlap()
-    // this.onMusic()
+    this.onMusic()
   }
   update(timestep, dt) {
     this.left_element.tilePositionY -= this.game_velocity
     this.right_element.tilePositionY -= this.game_velocity
+
+    if(!this.input.activePointer.isDown && this.isClicking == true) {
+      if(Math.abs(this.input.activePointer.upX - this.input.activePointer.downX) >= SWIPE_POWER) {
+          if(this.input.activePointer.upX < this.input.activePointer.downX) {
+            this.player.leftMove()
+          } else if(this.input.activePointer.upX > this.input.activePointer.downX) {
+            this.player.rightMove()
+          }
+      }
+      this.isClicking = false;
+    } else if(this.input.activePointer.isDown && this.isClicking == false) {
+      this.isClicking = true;
+    }
   }
   addOverlap() {
     this.physics.add.overlap(
@@ -97,30 +129,29 @@ export default class GameScene extends Phaser.Scene {
       undefined,
       this
     );
-    // this.physics.add.overlap(
-    //   this.positive,
-    //   this.player,
-    //   this.onPositiveOverlap,
-    //   undefined,
-    //   this
-    // );
-    // this.physics.add.overlap(
-    //   this.coins,
-    //   this.player,
-    //   this.onCoinsOverlap,
-    //   undefined,
-    //   this
-    // );
-    // this.physics.add.overlap(
-    //   this.spots,
-    //   this.player,
-    //   this.onSpotsOverlap,
-    //   undefined,
-    //   this
-    // );
+    this.physics.add.overlap(
+      this.positive,
+      this.player,
+      this.onPositiveOverlap,
+      undefined,
+      this
+    );
+    this.physics.add.overlap(
+      this.coins,
+      this.player,
+      this.onCoinsOverlap,
+      undefined,
+      this
+    );
+    this.physics.add.overlap(
+      this.spots,
+      this.player,
+      this.onSpotsOverlap,
+      undefined,
+      this
+    );
   }
   onNegativeOverlap(source, target) { // source - игрок
-    console.log("NEGATIVE OVERLAP")
     target.body.enable = false
     this.cameras.main.shake(500, 0.005)
     if (!this.mute) {
@@ -153,72 +184,74 @@ export default class GameScene extends Phaser.Scene {
       },
     });
 
-  //   if (this.hearts === 3){ 
-  //     this.tweens.add({
-  //       targets: this.ui.heart_1,
-  //       scale: {
-  //         from: 1,
-  //         to: 2
-  //       },
-  //       alpha: {
-  //         from: 1,
-  //         to: 0
-  //       },
-  //       ease: "Power2",
-  //       duration: 450,
-  //       onComplete: () => {
-  //         this.ui.heart_1.setFrame('not_hp')
-  //         this.ui.heart_1.alpha = 1
-  //         this.ui.heart_1.scale = 1
-  //       },
-  //     });
+    if (this.hearts === 3){ 
+      this.tweens.add({
+        targets: this.ui.heart_1,
+        scale: {
+          from: 1,
+          to: 2
+        },
+        alpha: {
+          from: 1,
+          to: 0
+        },
+        ease: "Power2",
+        duration: 450,
+        onComplete: () => {
+          this.ui.heart_1.setFrame('not_hp')
+          this.ui.heart_1.alpha = 1
+          this.ui.heart_1.scale = 1
+        },
+      });
 
-  //     this.hearts--
-  //   }
-  //   else if (this.hearts === 2) {
-  //     this.tweens.add({
-  //       targets: this.ui.heart_2,
-  //       scale: {
-  //         from: 1,
-  //         to: 2
-  //       },
-  //       alpha: {
-  //         from: 1,
-  //         to: 0
-  //       },
-  //       ease: "Power2",
-  //       duration: 450,
-  //       onComplete: () => {
-  //         this.ui.heart_2.setFrame('not_hp')
-  //         this.ui.heart_2.alpha = 1
-  //         this.ui.heart_2.scale = 1
-  //       },
-  //     });
-  //     this.hearts--
-  // }
-  //   else if (this.hearts === 1) {
-  //     this.tweens.add({
-  //       targets: this.ui.heart_3,
-  //       scale: {
-  //         from: 1,
-  //         to: 2
-  //       },
-  //       alpha: {
-  //         from: 1,
-  //         to: 0
-  //       },
-  //       ease: "Power2",
-  //       duration: 450,
-  //       onComplete: () => {
-  //         this.ui.heart_3.setFrame('not_hp')
+      this.hearts--
+    }
+    else if (this.hearts === 2) {
+      this.tweens.add({
+        targets: this.ui.heart_2,
+        scale: {
+          from: 1,
+          to: 2
+        },
+        alpha: {
+          from: 1,
+          to: 0
+        },
+        ease: "Power2",
+        duration: 450,
+        onComplete: () => {
+          this.ui.heart_2.setFrame('not_hp')
+          this.ui.heart_2.alpha = 1
+          this.ui.heart_2.scale = 1
+        },
+      });
+      this.hearts--
+  }
+    else if (this.hearts === 1) {
+      this.tweens.add({
+        targets: this.ui.heart_3,
+        scale: {
+          from: 1,
+          to: 2
+        },
+        alpha: {
+          from: 1,
+          to: 0
+        },
+        ease: "Power2",
+        duration: 450,
+        onComplete: () => {
+          this.ui.heart_3.setFrame('not_hp')
+          this.ui.heart_3.alpha = 1
+          this.ui.heart_3.scale = 1
 
-  //         this.game.scene.add('Start', StartScene, true);
+          // this.game.scene.add('Start', StartScene, true);
 
-  //         this.scene.remove("Game")
-  //       },
-  //     });
-  //     this.hearts--
-  //   }  
+          // this.scene.remove("Game")
+        },
+      });
+      this.hearts--
+    }  
   }
   onPositiveOverlap(source, target) {
     if (!this.mute) this.get_positive.play()
@@ -237,7 +270,6 @@ export default class GameScene extends Phaser.Scene {
         from: 1,
         to: 0.8
       },
-      // y: "-=300",
       ease: "Power2",
       duration: 900,
       onComplete: () => {
@@ -246,7 +278,6 @@ export default class GameScene extends Phaser.Scene {
         target.scale = 0.6
       },
     });
-    // target.setAlive(false);
     this.score += SCORE_POSITIVE
     this.ui.score_text.setText(`${this.score}`);
   }
@@ -275,7 +306,6 @@ export default class GameScene extends Phaser.Scene {
         target.scale = 1
       },
     });
-    // target.setAlive(false);
     this.score += SCORE_COIN
     this.ui.score_text.setText(`${this.score}`);
   }
@@ -304,7 +334,6 @@ export default class GameScene extends Phaser.Scene {
         target.scale = 1
       },
     });
-    // target.setAlive(false);
     this.score += SCORE_SPOT
     this.ui.score_text.setText(`${this.score}`);
   }
@@ -376,21 +405,8 @@ export default class GameScene extends Phaser.Scene {
       }
     });
   }
-  createTouch() {
-    let left = this.add.container(0, 0).setInteractive(
-      new Phaser.Geom.Rectangle(0, 100, WIDTH / 2, HEIGHT),
-      Phaser.Geom.Rectangle.Contains
-    )
-    left.on("pointerdown",() => this.player.leftMove())
-
-    let right = this.add.container(0, 0).setInteractive(
-      new Phaser.Geom.Rectangle(WIDTH / 2, 100, WIDTH, HEIGHT),
-      Phaser.Geom.Rectangle.Contains
-    )
-    right.on("pointerdown",()=>this.player.rightMove())
-  }
   createPrompt(num, x, y) {
-    let prompt = this.add.sprite(x, y, "prompts_spritesheet", `prompt${num}`)
+    let prompt = this.add.sprite(x, y, "prompts_spritesheet", `prompt${num}`).setScale(0.7)
     this.tweens.add({
       targets: prompt,
       alpha: {

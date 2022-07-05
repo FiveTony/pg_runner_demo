@@ -13,6 +13,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.scene.physics.add.existing(this);
     this.body.enable = true;
 
+    this.body.height = this.height - 20
+    this.body.width = this.width - 10
+
     this.direction = 0
 
     this.hero = this.config.hero
@@ -20,20 +23,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     this.setScale(this.config.playerScale);
     this.scene.events.on("update", this.update, this);
 
-    this.createControlKeyboard()
-
     this.setAnimation();
-    console.log(this.x)
-
     
-  }
-  createControlKeyboard() {
-    this.scene.input.keyboard.on('keydown-LEFT', function(event) {
-      this.leftMove()
-    },this);
-    this.scene.input.keyboard.on('keydown-RIGHT', function(event) {
-      this.rightMove()
-    },this);
   }
   setAnimation() {
     const frames = this.anims.generateFrameNames(`player_${this.hero}`, {
@@ -44,13 +35,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.anims.create({
       key: "player_animation",
-      frames: frames, // массив фреймов
-      frameRate: 1.5, // кадров в сек
+      frames: frames,
+      frameRate: 1.5,
       repeat: -1,
     });
-
-    // this.play("player_animation");
-    // this.player1.anims.pause();
   }
   leftMove() {
     if (this.direction === 0) {
@@ -60,7 +48,6 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.x = CENTER
       this.direction = 0
     }
-    console.log(this.x)
   }
   rightMove() {
     if (this.direction === 0) {
@@ -70,7 +57,5 @@ export default class Player extends Phaser.GameObjects.Sprite {
       this.x = CENTER
       this.direction = 0
     }
-        console.log(this.x)
-
   }
 }

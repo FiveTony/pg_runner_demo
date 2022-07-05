@@ -90,11 +90,11 @@ export default class PreloadScene extends Phaser.Scene {
 
   }
   preloadRooms() {
-    this.load.image("room1", "src/assets/sprites/desk/rooms/room1.png");
-    this.load.image("room2", "src/assets/sprites/desk/rooms/room2.png");
-    this.load.image("room3", "src/assets/sprites/desk/rooms/room3.png");
-    this.load.image("room4", "src/assets/sprites/desk/rooms/room4.png");
-    this.load.image("room5", "src/assets/sprites/desk/rooms/room5.png");
+    this.load.image("room1", "src/assets/sprites/desk/rooms/room1.jpg");
+    this.load.image("room2", "src/assets/sprites/desk/rooms/room2.jpg");
+    this.load.image("room3", "src/assets/sprites/desk/rooms/room3.jpg");
+    this.load.image("room4", "src/assets/sprites/desk/rooms/room4.jpg");
+    this.load.image("room5", "src/assets/sprites/desk/rooms/room5.jpg");
 
     // this.load.atlas(
     //   "rooms", "src/assets/sprites/desk/rooms/rooms_spritesheet.png", 

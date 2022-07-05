@@ -9,25 +9,25 @@ const X_2 = 250
 const X_3 = 350
 
 const DATA = [
-    [X_1, -450, 'spot_1'],
-    [X_2, -1120, 'spot_2'],
-    [X_2, -2400, 'spot_1'],
+    [X_1, -150, 'spot_1'],
+    [X_2, -460, 'spot_2'],
+    [X_2, -900, 'spot_1'],
 
-    [X_2, -980, 'spot_2'],
-    [X_1, -1260, 'spot_1'],
-    [X_3, -2600, 'spot_2'],
+    [X_2, -360, 'spot_2'],
+    [X_1, -590, 'spot_1'],
+    [X_3, -1000, 'spot_2'],
     
-    [X_1, -250, 'spot_2'],
+    [X_1, -750, 'spot_2'],
     [X_3, -250, 'spot_1'],
-    [X_3, -300, 'spot_2'],
+    [X_3, -470, 'spot_2'],
 
-    [X_3, -610, 'spot_1'],
-    [X_3, -730, 'spot_2'],
-    [X_1, -800, 'spot_2'],
+    [X_3, -160, 'spot_1'],
+    [X_3, -680, 'spot_2'],
+    [X_1, -790, 'spot_2'],
 
-    [X_3, -550, 'spot_2'],
-    [X_1, -800, 'spot_2'],
-    [X_1, -2100, 'spot_1'],
+    [X_3, -260, 'spot_2'],
+    [X_1, -400, 'spot_2'],
+    [X_1, -800, 'spot_1'],
 ]
 
 export default class Spots extends Phaser.Physics.Arcade.Group {
@@ -56,7 +56,7 @@ export default class Spots extends Phaser.Physics.Arcade.Group {
         this.add(elem_1)
 
         let data_2 = DATA[1]
-        let elem_2 = new Spot(this.scene, X_2, 280, 'positive_spritesheet', 'spot_1')
+        let elem_2 = new Spot(this.scene, X_2, 300, 'positive_spritesheet', 'spot_1')
         elem_2.move()
         this.add(elem_2)
 
@@ -66,12 +66,12 @@ export default class Spots extends Phaser.Physics.Arcade.Group {
         this.add(elem_3)
 
         let data_4 = DATA[3]
-        let elem_4 = new Spot(this.scene, X_2, -830, 'positive_spritesheet', 'spot_1')
+        let elem_4 = new Spot(this.scene, X_2, -760, 'positive_spritesheet', 'spot_1')
         elem_4.move()
         this.add(elem_4)
 
         let data_5 = DATA[4]
-        let elem_5 = new Spot(this.scene, X_1, -1030, 'positive_spritesheet', 'spot_2')
+        let elem_5 = new Spot(this.scene, X_1, -990, 'positive_spritesheet', 'spot_2')
         elem_5.move()
         this.add(elem_5)
 

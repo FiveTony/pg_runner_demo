@@ -32,7 +32,7 @@ if (mobile) {
   ];
   
   var config = {
-    type: Phaser.WEBGL,
+    type: Phaser.AUTO,
     width: 500,
     height: 800,
     scene: scenes,

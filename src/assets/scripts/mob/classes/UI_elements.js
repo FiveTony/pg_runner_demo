@@ -19,7 +19,7 @@ export default class UI_elements {
         this.scene.add.sprite(85, 40, "ui_spritesheet", 'score_rectangle')
         this.scene.add.sprite(46, 40, "ui_spritesheet", 'score_coin')
         // this.score_text = this.scene.add.text(690, 42, `${this.score}`, TEXT_STYLE)
-        this.score_text = this.scene.add.bitmapText(90, 22, 'Montserrat-Bold', `${this.score}`, 30)
+        this.score_text = this.scene.add.bitmapText(86, 22, 'Montserrat-Bold', `${this.score}`, 30)
     }
     createHearts() {
         this.heart_1 = this.scene.add.sprite(225, 40, "ui_spritesheet", 'hp')

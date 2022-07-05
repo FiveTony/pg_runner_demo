@@ -17,6 +17,9 @@ export default class Player extends Phaser.GameObjects.Sprite {
 
     this.hero = this.config.hero
 
+    this.body.height = this.height - 20
+    this.body.width = this.width - 10
+
     this.setScale(this.config.playerScale);
     this.scene.events.on("update", this.update, this);
 

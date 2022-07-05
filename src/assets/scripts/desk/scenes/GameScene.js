@@ -12,12 +12,10 @@ const WIDTH = 1920
 const HEIGHT = 1080
 
 const GAME_VELOCITY_START = 5
-const GAME_VELOCITY_STEP = 0.6
 
 const SCORE_SPOT = 3
 const SCORE_COIN = 1
 const SCORE_POSITIVE = 5
-
 
 export default class GameScene extends Phaser.Scene {
   constructor() {
@@ -40,10 +38,8 @@ export default class GameScene extends Phaser.Scene {
     this.count_created_scenes = 0
 
     this.play_num = 1
-
   }
   create() {
-    // this.game.clearBeforeRender = false;
     this.game_velocity = 0
     
     let rooms = new Rooms(this)
@@ -60,7 +56,6 @@ export default class GameScene extends Phaser.Scene {
         .setInteractive()
         .once("pointerdown", ()=> {
           this.player.play("player_animation");
-          this.createTouch()
           this.game_velocity = GAME_VELOCITY_START
           this.events.emit("start_game")
           this.events.removeListener("start_game")
@@ -78,6 +73,25 @@ export default class GameScene extends Phaser.Scene {
           this.start_button.setTexture("start_hover")
         })
 
+        this.tweens.add({
+          targets: this.start_button,
+          alpha: {
+            from: 1,
+            to: 0.8
+          },
+          angle: {
+            from: -7,
+            to: 7
+          },
+          repeat: -1,
+          ease: "Linear",
+          yoyo: true,
+          duration: 800,
+          onComplete: function () {
+            this.start_button.alpha = 1;
+          },
+        });
+
     this.left_element = this.add.tileSprite(0, 0, 510, HEIGHT, "left_element").setOrigin(0);
     this.right_element = this.add.tileSprite(WIDTH - 510, 0, 0, HEIGHT, "right_element").setOrigin(0);
 
@@ -91,10 +105,7 @@ export default class GameScene extends Phaser.Scene {
 
     this.createSounds()
     this.addOverlap()
-    // this.createMusic()
     this.onMusic()
-
-    // this.createTouch()
   }
   update(timestep, dt) {
     this.left_element.tilePositionY -= this.game_velocity
@@ -415,19 +426,19 @@ export default class GameScene extends Phaser.Scene {
       }
     });
   }
-  createTouch() {
-    let left = this.add.container(0, 0).setInteractive(
-      new Phaser.Geom.Rectangle(0, 100, WIDTH / 2, HEIGHT),
-      Phaser.Geom.Rectangle.Contains
-    )
-    left.on("pointerdown",() => this.player.leftMove())
+  // createTouch() {
+  //   let left = this.add.container(0, 0).setInteractive(
+  //     new Phaser.Geom.Rectangle(0, 100, WIDTH / 2, HEIGHT),
+  //     Phaser.Geom.Rectangle.Contains
+  //   )
+  //   left.on("pointerdown",() => this.player.leftMove())
 
-    let right = this.add.container(0, 0).setInteractive(
-      new Phaser.Geom.Rectangle(WIDTH / 2, 100, WIDTH, HEIGHT),
-      Phaser.Geom.Rectangle.Contains
-    )
-    right.on("pointerdown",()=>this.player.rightMove())
-  }
+  //   let right = this.add.container(0, 0).setInteractive(
+  //     new Phaser.Geom.Rectangle(WIDTH / 2, 100, WIDTH, HEIGHT),
+  //     Phaser.Geom.Rectangle.Contains
+  //   )
+  //   right.on("pointerdown",()=>this.player.rightMove())
+  // }
   createPrompt(num, x, y) {
     let prompt = this.add.sprite(x, y, "prompts_spritesheet", `prompt${num}`)
     this.tweens.add({
