@@ -16,10 +16,10 @@ export default class UI_elements {
         this.createSoundButtons()
     }
     createStats() {
-        this.scene.add.sprite(678, 69, "ui_spritesheet", 'score_rectangle')
+        this.scene.add.sprite(678, 70, "ui_spritesheet", 'score_rectangle')
         this.scene.add.sprite(622, 68, "ui_spritesheet", 'score_coin')
         // this.score_text = this.scene.add.text(690, 42, `${this.score}`, TEXT_STYLE)
-        this.score_text = this.scene.add.bitmapText(690, 42, 'Montserrat-Bold', `${this.score}`, 50)
+        this.score_text = this.scene.add.bitmapText(688, 42, 'Montserrat-Bold', `${this.score}`, 50)
     }
     createHearts() {
         this.heart_1 = this.scene.add.sprite(1126, 66, "ui_spritesheet", 'hp')

@@ -32,7 +32,7 @@ export default class Room extends Phaser.GameObjects.Sprite {
         } else if ((this.y > BG_HEIGHT - this.delta) && (!this.leave_flag)) {
             if (this.scene.game_velocity < 9) {
                 this.scene.game_velocity += GAME_VELOCITY_STEP
-                this.delta += 0.5
+                this.delta += 0.4
             }
             // console.log("leave  ",this.y, "this.scene.game_velocity   ", this.scene.game_velocity, "delta   ", this.delta, "this.y - BG_HEIGHT  ", this.y - BG_HEIGHT)
             this.scene.events.emit("leave")

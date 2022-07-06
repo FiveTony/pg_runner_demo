@@ -49,11 +49,10 @@ export default class Player extends Phaser.GameObjects.Sprite {
       frameRate: 1.5, // кадров в сек
       repeat: -1,
     });
-
-    // this.play("player_animation");
-    // this.player1.anims.pause();
   }
   leftMove() {
+    if (!this.scene.mute) this.scene.swipe_sound.play()
+
     if (this.direction === 0) {
       this.x = LEFT
       this.direction = -1
@@ -63,6 +62,8 @@ export default class Player extends Phaser.GameObjects.Sprite {
     }
   }
   rightMove() {
+    if (!this.scene.mute) this.scene.swipe_sound.play()
+
     if (this.direction === 0) {
       this.x = RIGHT
       this.direction = 1

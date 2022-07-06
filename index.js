@@ -21,8 +21,8 @@ import PreloadSceneDesk from "./src/assets/scripts/desk/scenes/PreloadScene";
 
 console.log("device.mobile(): ", device.mobile(), "device.desktop(): ", device.desktop())
 
-// const mobile = device.mobile()
-const mobile = true
+const mobile = device.mobile()
+// const mobile = true
 
 if (mobile) {
   console.log("mobile")

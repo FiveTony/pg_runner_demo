@@ -366,6 +366,14 @@ export default class GameScene extends Phaser.Scene {
       seek: 0,
       delay: 0,
     });
+    this.swipe_sound = this.sound.add("swipe_sound", {
+      mute: false,
+      volume: 0.8,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      delay: 0,
+    });
     this.win = this.sound.add("win", {
       mute: false,
       volume: 0.2,

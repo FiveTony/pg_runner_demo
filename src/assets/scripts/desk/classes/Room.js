@@ -4,7 +4,7 @@ const BG_HEIGHT = 2880
 const WIDTH = 1920
 const HEIGHT = 1080
 
-const GAME_VELOCITY_STEP = 0.4
+const GAME_VELOCITY_STEP = 0.8
 
 
 export default class Room extends Phaser.GameObjects.Sprite {
@@ -23,16 +23,17 @@ export default class Room extends Phaser.GameObjects.Sprite {
         this.scene.events.on('start_game', this.move, this)
         this.scene.events.on('leave', this.move, this)
 
-        this.delta = 10
+        this.delta = 12
     }
     update(timestep, dt) {
         if (this.y > BG_HEIGHT - 1 + HEIGHT && (!this.destroy_flag)) {
             this.setAlive(false)
             this.destroy_flag = !this.destroy_flag
         } else if ((this.y > BG_HEIGHT - this.delta) && (!this.leave_flag)) {  
-            if (this.scene.game_velocity < 9) {
+            if (this.scene.game_velocity < 18) {
                 this.scene.game_velocity += GAME_VELOCITY_STEP
-                this.delta += 0.5
+                this.delta += 2
+                console.log(this.scene.game_velocity)
             }
             this.scene.events.emit("leave")
             this.leave_flag = !this.leave_flag   

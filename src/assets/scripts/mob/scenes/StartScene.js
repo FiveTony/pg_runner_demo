@@ -19,7 +19,9 @@ export default class StartScene extends Phaser.Scene {
     this.direction = -1
     this.isClicking = false
     this.createBackground();
-    this.createCharacters2()
+    this.createCharacters()
+
+    this.tween_complete = true
   }
   createBackground() {
     this.add.graphics(0, 0, WIDTH, HEIGHT)
@@ -43,149 +45,6 @@ export default class StartScene extends Phaser.Scene {
     });
     this.scene.remove("Start")
   }
-  // createCharacters() {
-  //   this.add.sprite(375, 240, "charactersChoose" ,"rita_label")
-  //   .setInteractive()
-  //   .on(
-  //     "pointermove",
-  //     function (pointer, x, y, event) {
-  //       this.rita_capture.scale = 1.2;
-  //       this.rita_text.angle = 5
-  //       this.rita_button.setTexture("rita_button_hover")
-  //     }.bind(this)
-  //   )
-  //   .on(
-  //     "pointerout",
-  //     function (pointer, x, y, event) {
-  //       this.rita_capture.scale = 1;
-  //       this.rita_text.angle = 0
-  //       this.rita_button.setTexture("rita_button")
-
-  //     }.bind(this)
-  //   );
-  //   this.rita_capture = this.add.sprite(370, 450, "charactersChoose" ,"rita_capture")
-  //   .setInteractive()
-  //   .on(
-  //     "pointermove",
-  //     function (pointer, x, y, event) {
-  //       this.rita_capture.scale = 1.2;
-  //       this.rita_text.angle = 5
-  //       this.rita_button.setTexture("rita_button_hover")
-  //     }.bind(this)
-  //   )
-  //   .on(
-  //     "pointerout",
-  //     function (pointer, x, y, event) {
-  //       this.rita_capture.scale = 1;
-  //       this.rita_text.angle = 0
-  //       this.rita_button.setTexture("rita_button")
-
-  //     }.bind(this)
-  //   );
-  //   this.rita_text = this.add.sprite(370, 730, "charactersChoose" ,"rita_text")
-  //   .setInteractive()
-  //   .on(
-  //     "pointermove",
-  //     function (pointer, x, y, event) {
-  //       this.rita_capture.scale = 1.2;
-  //       this.rita_text.angle = 5
-  //       this.rita_button.setTexture("rita_button_hover")
-  //     }.bind(this)
-  //   )
-  //   .on(
-  //     "pointerout",
-  //     function (pointer, x, y, event) {
-  //       this.rita_capture.scale = 1;
-  //       this.rita_text.angle = 0
-  //       this.rita_button.setTexture("rita_button")
-
-  //     }.bind(this)
-  //   );
-  //   this.rita_button = this.add.sprite(370, 910, "rita_button")
-  //     .setInteractive()
-  //     .on("pointerdown", () => {
-  //       this.game.scene.add('Game', GameScene, true, {
-  //         hero: "rita", 
-  //         play_num: 1
-  //       });
-  //       this.scene.remove("Start")
-  //     })
-  //     .on(
-  //       "pointermove",
-  //       function (pointer, x, y, event) {
-  //         this.rita_capture.scale = 1.2;
-  //         this.rita_text.angle = 5
-  //         this.rita_button.setTexture("rita_button_hover")
-  //       }.bind(this)
-  //     )
-  //     .on(
-  //       "pointerout",
-  //       function (pointer, x, y, event) {
-  //         this.rita_capture.scale = 1;
-  //         this.rita_text.angle = 0
-  //         this.rita_button.setTexture("rita_button")
-
-  //       }.bind(this)
-  //     );
-
-  //   this.add.sprite(1920 / 2, 240, "charactersChoose" ,"dima_label")
-  //   this.dima_capture = this.add.sprite(1920 / 2, 450, "charactersChoose" ,"dima_capture")
-  //   this.dima_text = this.add.sprite(1920 / 2, 730, "charactersChoose" ,"dima_text")
-  //   this.dima_button = this.add.sprite(1920 / 2, 910,"dima_button")
-  //     .setInteractive()
-  //     .on("pointerdown", () => {
-  //       this.game.scene.add('Game', GameScene, true, {
-  //         hero: "dima", 
-  //         play_num: 1
-  //       });
-  //       this.scene.remove("Start")
-  //     })
-  //     .on(
-  //       "pointermove",
-  //       function (pointer, x, y, event) {
-  //         this.dima_capture.scale = 1.2;
-  //         this.dima_text.angle = 5
-  //         this.dima_button.setTexture("dima_button_hover")
-  //       }.bind(this)
-  //     )
-  //     .on(
-  //       "pointerout",
-  //       function (pointer, x, y, event) {
-  //         this.dima_capture.scale = 1;
-  //         this.dima_text.angle = 0
-  //         this.dima_button.setTexture("dima_button")
-  //       }.bind(this)
-  //     );
-
-  //   this.add.sprite(1920 - 370, 240, "charactersChoose" ,"musya_label")
-  //   this.musya_capture = this.add.sprite(1920 - 370, 450, "charactersChoose" ,"musya_capture")
-  //   this.musya_text = this.add.sprite(1920 - 370, 730, "charactersChoose" ,"musya_text")
-  //   this.musya_button = this.add.sprite(1920 - 370, 910, "musya_button")
-  //   .setInteractive()
-  //   .on("pointerdown", () => {
-  //       this.game.scene.add('Game', GameScene, true, {
-  //         hero: "musya", 
-  //         play_num: 1
-  //       });
-  //       this.scene.remove("Start")
-  //     })
-  //   .on(
-  //     "pointermove",
-  //     function (pointer, x, y, event) {
-  //       this.musya_capture.scale = 1.2;
-  //       this.musya_text.angle = 5
-  //       this.musya_button.setTexture("musya_button_hover")
-  //     }.bind(this)
-  //   )
-  //   .on(
-  //     "pointerout",
-  //     function (pointer, x, y, event) {
-  //       this.musya_capture.scale = 1;
-  //       this.musya_text.angle = 0
-  //       this.musya_button.setTexture("musya_button")
-  //     }.bind(this)
-  //   );
-  // }
   createMusic() {
     this.main_theme = this.sound.add("main_theme", {
       mute: false,
@@ -199,8 +58,9 @@ export default class StartScene extends Phaser.Scene {
     this.main_theme.play();
   }
   update() {
-    if(!this.input.activePointer.isDown && this.isClicking == true) {
+    if(!this.input.activePointer.isDown && this.isClicking == true && this.tween_complete == true) {
       if(Math.abs(this.input.activePointer.upX - this.input.activePointer.downX) >= SWIPE_POWER) {
+          // this.tween_complete = false
           if(this.input.activePointer.upX < this.input.activePointer.downX) {
             this.rightMove()
           } else if(this.input.activePointer.upX > this.input.activePointer.downX) {
@@ -216,13 +76,43 @@ export default class StartScene extends Phaser.Scene {
     console.log("LEFT")
 
     if (this.direction === 0) {
-      this.big_container.x = LEFT
-      this.direction = -1
-      console.log(this.direction, this.big_container.x)
+      // this.big_container.x = LEFT
+      this.tween_complete = false
+
+      this.tweens.add({
+        targets: this.big_container,
+        x: {
+          from: this.big_container.x,
+          to: LEFT
+        },
+        ease: "Power2",
+        duration: 500,
+        onComplete: () => {
+          this.tween_complete = true
+          this.direction = -1
+          console.log(this.direction, this.big_container.x)
+        }
+      });
+
     } else if (this.direction === 1) {
-      this.big_container.x = CENTER
-      this.direction = 0
-      console.log(this.direction, this.big_container.x)
+      // this.big_container.x = CENTER
+      this.tween_complete = false
+
+      this.tweens.add({
+        targets: this.big_container,
+        x: {
+          from: this.big_container.x,
+          to: CENTER
+        },
+        ease: "Power2",
+        duration: 500,
+        onComplete: () => {
+          this.tween_complete = true
+          this.direction = 0
+          console.log(this.direction, this.big_container.x)
+        }
+      });
+
 
     }
   }
@@ -230,19 +120,48 @@ export default class StartScene extends Phaser.Scene {
     console.log("RIGHT")
 
     if (this.direction === 0) {
-      this.big_container.x = RIGHT
-      this.direction = 1
-      console.log(this.direction, this.big_container.x)
+      // this.big_container.x = RIGHT
+      this.tween_complete = false
+
+      this.tweens.add({
+        targets: this.big_container,
+        x: {
+          from: this.big_container.x,
+          to: RIGHT
+        },
+        ease: "Power2",
+        duration: 500,
+        onComplete: () => {
+          this.tween_complete = true
+          this.direction = 1
+          console.log(this.direction, this.big_container.x)
+        }
+      });
+
 
     } else if (this.direction === -1) {
-      this.big_container.x = CENTER
-      this.direction = 0
-      console.log(this.direction, this.big_container.x)
+      // this.big_container.x = CENTER
+      this.tween_complete = false
+
+      this.tweens.add({
+        targets: this.big_container,
+        x: {
+          from: this.big_container.x,
+          to: CENTER
+        },
+        ease: "Power2",
+        duration: 500,
+        onComplete: () => {
+          this.tween_complete = true
+          this.direction = 0
+          console.log(this.direction, this.big_container.x)
+        }
+      });
 
     }
   }
-  createCharacters2() {
-    this.big_container = this.add.container(72, 163)
+  createCharacters() {
+    this.big_container = this.add.container(72, 162)
 
     let container1 = this.add.container(0, 0)
     let graphics1 = this.add.graphics()

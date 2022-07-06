@@ -32,6 +32,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio("get_negative", "src/assets/sounds/get_negative.mp3");
     this.load.audio("get_negative_musya", "src/assets/sounds/get_negative_musya.mp3");
     this.load.audio("win", "src/assets/sounds/win.mp3");
+    this.load.audio("swipe_sound", "src/assets/sounds/swipe.mp3");
 
     
     this.load.image("border", "src/assets/sprites/desk/border.png");

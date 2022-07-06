@@ -37,6 +37,7 @@ export default class PreloadScene extends Phaser.Scene {
     this.load.audio("get_positive", "src/assets/sounds/get_positive.mp3");
     this.load.audio("get_negative", "src/assets/sounds/get_negative.mp3");
     this.load.audio("get_negative_musya", "src/assets/sounds/get_negative_musya.mp3");
+    this.load.audio("swipe_sound", "src/assets/sounds/swipe.mp3");
     this.load.audio("win", "src/assets/sounds/win.mp3");
 
     // this.load.image("border", "src/assets/sprites/mob/border.png");
@@ -127,8 +128,8 @@ export default class PreloadScene extends Phaser.Scene {
       "src/assets/sprites/mob/negative/negative_spritesheet.json");
 
     this.load.atlas(
-      "positive_spritesheet", "src/assets/sprites/mob/positive/positive_spritesheet.png", 
-      "src/assets/sprites/mob/positive/positive_spritesheet.json");
+      "positive_spritesheet", "src/assets/sprites/mob/positive/test/positive_spritesheet.png", 
+      "src/assets/sprites/mob/positive/test/positive_spritesheet.json");
   }
   createElements() {
     let preload_graphics = this.add.graphics()

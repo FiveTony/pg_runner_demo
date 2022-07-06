@@ -11,7 +11,7 @@ import StartScene from "./StartScene";
 const WIDTH = 1920
 const HEIGHT = 1080
 
-const GAME_VELOCITY_START = 5
+const GAME_VELOCITY_START = 6
 
 const SCORE_SPOT = 3
 const SCORE_COIN = 1
@@ -395,6 +395,14 @@ export default class GameScene extends Phaser.Scene {
       seek: 0,
       delay: 0,
     });
+    this.swipe_sound = this.sound.add("swipe_sound", {
+      mute: false,
+      volume: 0.8,
+      rate: 1,
+      detune: 0,
+      seek: 0,
+      delay: 0,
+    });
   }
   onMusic() {
     this.ui.sound.on("pointerdown", () => {
@@ -426,19 +434,6 @@ export default class GameScene extends Phaser.Scene {
       }
     });
   }
-  // createTouch() {
-  //   let left = this.add.container(0, 0).setInteractive(
-  //     new Phaser.Geom.Rectangle(0, 100, WIDTH / 2, HEIGHT),
-  //     Phaser.Geom.Rectangle.Contains
-  //   )
-  //   left.on("pointerdown",() => this.player.leftMove())
-
-  //   let right = this.add.container(0, 0).setInteractive(
-  //     new Phaser.Geom.Rectangle(WIDTH / 2, 100, WIDTH, HEIGHT),
-  //     Phaser.Geom.Rectangle.Contains
-  //   )
-  //   right.on("pointerdown",()=>this.player.rightMove())
-  // }
   createPrompt(num, x, y) {
     let prompt = this.add.sprite(x, y, "prompts_spritesheet", `prompt${num}`)
     this.tweens.add({
