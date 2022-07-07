@@ -1,62 +1,55 @@
 {
-	"textures": [
-		{
-			"image": "player_rita_spritesheet.png",
-			"format": "RGBA8888",
-			"size": {
-				"w": 152,
-				"h": 101
+	"frames": {
+		"player_rita_1": {
+			"frame": {
+				"x": 1,
+				"y": 1,
+				"w": 71,
+				"h": 99
 			},
-			"scale": 1,
-			"frames": [
-				{
-					"filename": "player_rita_1",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 74,
-						"h": 103
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 3,
-						"w": 74,
-						"h": 99
-					},
-					"frame": {
-						"x": 1,
-						"y": 1,
-						"w": 74,
-						"h": 99
-					}
-				},
-				{
-					"filename": "player_rita_2",
-					"rotated": false,
-					"trimmed": true,
-					"sourceSize": {
-						"w": 74,
-						"h": 103
-					},
-					"spriteSourceSize": {
-						"x": 0,
-						"y": 3,
-						"w": 74,
-						"h": 99
-					},
-					"frame": {
-						"x": 77,
-						"y": 1,
-						"w": 74,
-						"h": 99
-					}
-				}
-			]
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 71,
+				"h": 99
+			},
+			"sourceSize": {
+				"w": 71,
+				"h": 99
+			}
+		},
+		"player_rita_2": {
+			"frame": {
+				"x": 74,
+				"y": 1,
+				"w": 71,
+				"h": 98
+			},
+			"rotated": false,
+			"trimmed": false,
+			"spriteSourceSize": {
+				"x": 0,
+				"y": 0,
+				"w": 71,
+				"h": 98
+			},
+			"sourceSize": {
+				"w": 71,
+				"h": 98
+			}
 		}
-	],
+	},
 	"meta": {
-		"app": "https://www.codeandweb.com/texturepacker",
-		"version": "3.0",
-		"smartupdate": "$TexturePacker:SmartUpdate:b3092f9572fa154086dabdc9fa67185c:7fd92600b69c0262407a3c911b4bac42:2eafdaaaab84c9daffecba7f506a51b4$"
+		"app": "http://www.codeandweb.com/texturepacker",
+		"version": "1.0",
+		"image": "spritesheet.png",
+		"format": "RGBA8888",
+		"size": {
+			"w": 146,
+			"h": 101
+		},
+		"scale": "1"
 	}
 }

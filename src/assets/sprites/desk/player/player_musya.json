@@ -4,40 +4,40 @@
 			"frame": {
 				"x": 1,
 				"y": 1,
-				"w": 194,
-				"h": 292
+				"w": 212,
+				"h": 303
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 194,
-				"h": 292
+				"w": 212,
+				"h": 303
 			},
 			"sourceSize": {
-				"w": 194,
-				"h": 292
+				"w": 212,
+				"h": 303
 			}
 		},
 		"player_musya_2": {
 			"frame": {
-				"x": 197,
+				"x": 215,
 				"y": 1,
-				"w": 196,
-				"h": 293
+				"w": 212,
+				"h": 302
 			},
 			"rotated": false,
 			"trimmed": false,
 			"spriteSourceSize": {
 				"x": 0,
 				"y": 0,
-				"w": 196,
-				"h": 293
+				"w": 212,
+				"h": 302
 			},
 			"sourceSize": {
-				"w": 196,
-				"h": 293
+				"w": 212,
+				"h": 302
 			}
 		}
 	},
@@ -47,8 +47,8 @@
 		"image": "spritesheet.png",
 		"format": "RGBA8888",
 		"size": {
-			"w": 394,
-			"h": 295
+			"w": 428,
+			"h": 305
 		},
 		"scale": "1"
 	}
